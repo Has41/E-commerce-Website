@@ -47,4 +47,4 @@ const server = app.listen(PORT, () => {
     console.log(`Server running on: ${PORT}`)
 })
 
-export { server, app }
+export default app
