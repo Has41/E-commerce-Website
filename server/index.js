@@ -11,7 +11,9 @@ const PORT = process.env.PORT || 5000
 
 const corsOptions = {
     origin: 'https://e-commerce-website-client-woad.vercel.app',
-    credentials: true
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization'
 }
   
 // Middlewares
