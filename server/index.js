@@ -9,8 +9,14 @@ import allRoutes from './Routes/index.js';
 const app = express()
 const PORT = process.env.PORT || 5000
 
+const corsOptions = {
+    origin: 'https://e-commerce-website-client-woad.vercel.app',
+    credentials: true, // Access-Control-Allow-Credentials: true
+    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+}
+  
 // Middlewares
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(morgan('dev'))
 app.use(cookieParser())
 app.use(express.json())
