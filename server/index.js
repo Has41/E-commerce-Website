@@ -9,15 +9,16 @@ import allRoutes from './Routes/index.js';
 const app = express()
 const PORT = process.env.PORT || 5000
 
-const corsOptions = {
-    origin: 'https://e-commerce-website-client-woad.vercel.app',
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE"],
-    allowedHeaders: 'Content-Type,Authorization'
-}
+// const corsOptions = {
+//     origin: 'https://e-commerce-website-client-woad.vercel.app',
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE"],
+//     allowedHeaders: 'Content-Type,Authorization'
+// }
   
 // Middlewares
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
+app.use(cors())
 app.use(morgan('dev'))
 app.use(cookieParser())
 app.use(express.json())
