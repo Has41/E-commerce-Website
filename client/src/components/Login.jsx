@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState(``)
   const [errorMessage, setErrorMessage] = useState(null)
   const [loading, setLoading] = useState(false)
+  const apiURL = process.env.BASE_API_URL
 
   const login = async (e) => {
     e.preventDefault()
@@ -26,7 +27,7 @@ const Login = () => {
 
     try {
         setLoading(true)
-        const loginRes = await fetch(`/api/auth/login`, {
+        const loginRes = await fetch(`${apiURL}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -37,7 +38,7 @@ const Login = () => {
 
         if (loginRes.ok) {
             setErrorMessage(null); 
-            const userRes = await fetch(`/api/users/me`, {
+            const userRes = await fetch(`${apiURL}/api/users/me`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
