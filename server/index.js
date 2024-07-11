@@ -1,24 +1,16 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import 'dotenv/config'
-import cors from 'cors'
-import morgan from 'morgan'
-import cookieParser from 'cookie-parser'
-import allRoutes from './Routes/index.js'
+import express from 'express';
+import mongoose from 'mongoose';
+import 'dotenv/config';
+import cors from 'cors';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import allRoutes from './Routes/index.js';
 
 const app = express()
 const PORT = process.env.PORT || 5000
 
-const allowedDomainPattern = /https:\/\/e-commerce-website-client-.*\.vercel\.app/
-
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedDomainPattern.test(origin)) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    },
+    origin: 'https://e-commerce-website-client-woad.vercel.app/',
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE"],
     allowedHeaders: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
