@@ -5,7 +5,7 @@ import formidable from 'express-formidable'
 
 const router = express.Router()
 
-router.get(`/me`, getUserInfo)
+router.get(`/me`, isAuthentic, getUserInfo)
 router.get('/me/allUsers', isAdmin, getAllUsers)
 router.get('/me/photo/:userId', getUserPhoto)
 router.put(`/me`, updateUser)
