@@ -43,6 +43,7 @@ const Login = () => {
             if (userRes.ok) {
                 setLoading(false)
                 const userData = await userRes.json()
+                console.log(userData)
                 const isAdmin = userData.role === 'admin'
                 isAdmin ? navigate('/adminPanel') : navigate('/')
              } else {
