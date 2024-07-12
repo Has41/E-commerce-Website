@@ -2,10 +2,10 @@ import React,{ useState } from 'react'
 import NavBar1 from './NavBar1'
 import { Link } from 'react-router-dom'
 import Footer2 from './Footer2'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const navigate = useNavigate()
+//   const navigate = useNavigate()
   const [email, setEmail] = useState(``)
   const [password, setPassword] = useState(``)
   const [errorMessage, setErrorMessage] = useState(null)
@@ -22,7 +22,7 @@ const Login = () => {
     const loginData = {
         email: email,
         password: password
-    };
+    }
 
     try {
         setLoading(true)
@@ -36,22 +36,20 @@ const Login = () => {
         })
 
         if (loginRes.ok) {
-            setErrorMessage(null); 
-            const userRes = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
+            setErrorMessage(null)
+            console.log('Login successful') 
+            const userRes = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`)
 
             if (userRes.ok) {
                 setLoading(false)
                 const userData = await userRes.json()
-                const isAdmin = userData.role === 'admin'
-                isAdmin ? navigate('/adminPanel') : navigate('/')
+                // const isAdmin = userData.role === 'admin'
+                // isAdmin ? navigate('/adminPanel') : navigate('/')
+                console.log(userData)
              } else {
                 setLoading(false)
                 const userErrorData = await userRes.json()
+                console.error(userErrorData)
                 console.error('Failed to fetch user data:', userRes.status, userErrorData.message)
             }
         } else if (loginRes.status === 401) {
@@ -61,6 +59,7 @@ const Login = () => {
             setLoading(false)
             const errorData = await loginRes.json()
             setErrorMessage(errorData.message)
+            console.error(errorData)
         }
     } catch (err) {
         setLoading(true)
