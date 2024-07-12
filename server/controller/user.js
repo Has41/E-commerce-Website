@@ -9,9 +9,9 @@ const getUserInfo = async (req,res,next) => {
         const data = await User.findById(req.user.id).select('name email address phone bio role verification')
 
         if (!data) {
-            return res.status(404).json({ error: 'User not found' });
+            return res.status(404).json({ error: 'User not found' })
         }
-        
+
         return res.status(200).json(data)
     } catch(err) {
         return next(err)
