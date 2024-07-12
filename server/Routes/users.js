@@ -1,11 +1,11 @@
 import express from 'express'
 import { addTodoTask, editTodoCheck, editTodoTask, getAllTasks, getAllUsers, getUserInfo, getUserPhoto , removeTodoTask, updateUser, updateUserPhoto } from '../controller/user.js'
-import { isAdmin } from '../utils/checkAuth.js'
+import { isAdmin, isAuthentic } from '../utils/checkAuth.js'
 import formidable from 'express-formidable'
 
 const router = express.Router()
 
-router.get(`/me`, getUserInfo)
+router.get(`/me`, isAuthentic, getUserInfo)
 router.get('/me/allUsers', isAdmin, getAllUsers)
 router.get('/me/photo/:userId', getUserPhoto)
 router.put(`/me`, updateUser)
