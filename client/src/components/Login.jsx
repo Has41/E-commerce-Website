@@ -38,7 +38,11 @@ const Login = () => {
         if (loginRes.ok) {
             setErrorMessage(null)
             console.log('Login successful') 
-            const userRes = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`)
+            const userRes = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            
 
             if (userRes.ok) {
                 setLoading(false)
