@@ -145,6 +145,8 @@ const login = async (req, res, next) => {
             const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1d' })
             return res.status(200).cookie('accessToken', token, {
                 httpOnly: true,
+                sameSite: 'none',
+                secure: true,
                 expiresIn: '1d'
             }).json('Login Success!')
         } catch (tokenError) {
