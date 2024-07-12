@@ -2,10 +2,10 @@ import React,{ useState } from 'react'
 import NavBar1 from './NavBar1'
 import { Link } from 'react-router-dom'
 import Footer2 from './Footer2'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-//   const navigate = useNavigate()
+  const navigate = useNavigate()
   const [email, setEmail] = useState(``)
   const [password, setPassword] = useState(``)
   const [errorMessage, setErrorMessage] = useState(null)
@@ -43,13 +43,11 @@ const Login = () => {
             if (userRes.ok) {
                 setLoading(false)
                 const userData = await userRes.json()
-                // const isAdmin = userData.role === 'admin'
-                // isAdmin ? navigate('/adminPanel') : navigate('/')
-                console.log(userData)
+                const isAdmin = userData.role === 'admin'
+                isAdmin ? navigate('/adminPanel') : navigate('/')
              } else {
                 setLoading(false)
                 const userErrorData = await userRes.json()
-                console.error(userErrorData)
                 console.error('Failed to fetch user data:', userRes.status, userErrorData.message)
             }
         } else if (loginRes.status === 401) {
