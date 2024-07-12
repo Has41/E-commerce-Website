@@ -19,7 +19,7 @@ const CartPage = () => {
 
     const fetchSingleProduct = async () => {
       try {
-        const res = await fetch(`/api/products/get-single-product/${productId}`, {
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/get-single-product/${productId}`, {
           method: 'GET',
           credentials: 'same-origin'
         })
@@ -27,7 +27,7 @@ const CartPage = () => {
         if (res.ok) {
           const data = await res.json()
           setProduct(data)
-          setPhoto(`/api/products/get-product-photo/${productId}`)
+          setPhoto(`https://e-commerce-website-server-eta.vercel.app/api/products/get-product-photo/${productId}`)
           getRelatedProducts(data._id, data.category)
         } else {
           console.error('Error getting product!')
@@ -54,7 +54,7 @@ const CartPage = () => {
           }
 
         setLoading(true)
-        const res = await fetch(`/api/cart/add`, {
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/add`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ const CartPage = () => {
 
     const getRelatedProducts = async (pid, cid) => {
       try {
-        const res = await fetch(`/api/products/get-related-product/${pid}/${cid}`)
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/get-related-product/${pid}/${cid}`)
 
         if (res.ok) {
           const data = await res.json()
@@ -117,7 +117,7 @@ const CartPage = () => {
 
       const checkLogin = async () => {
         try {
-            const res = await fetch(`/api/users/me`)
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`)
             if(res.ok) {
                 const data = await res.json()
                 setLoggedIn(data)

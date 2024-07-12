@@ -27,7 +27,7 @@ const MyCart = () => {
 
   const getCartItems = async () => {
     try {
-        const res = await fetch(`/api/cart/current`)
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/current`)
         if (res.ok) {
             const data = await res.json()
             setCartItems(data)
@@ -41,7 +41,7 @@ const MyCart = () => {
 
 const checkLogin = async () => {
   try {
-      const res = await fetch(`/api/users/me`)
+      const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`)
       if(res.ok) {
           const data = await res.json()
           setLoggedIn(data)
@@ -77,7 +77,7 @@ const createPayment = async () => {
 
   try {
     setLoading(true)
-    const res = await fetch('/api/products/create-checkout/session', {
+    const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/products/create-checkout/session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

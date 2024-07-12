@@ -9,7 +9,7 @@ const Order = () => {
 
     const fetchOrders = async () => {
         try {
-            const res = await fetch('/api/auth/orders')
+            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/auth/orders')
 
             if (res.ok) {
                 const data = await res.json()

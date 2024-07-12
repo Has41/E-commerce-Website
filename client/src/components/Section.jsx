@@ -17,7 +17,7 @@ const Section = () => {
 
     const getProducts = async () => {
       try {
-        const res = await fetch(`/api/products/get-product`)
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/get-product`)
     
         if (res.ok) {
           const data = await res.json()

@@ -33,7 +33,7 @@ const Register = () => {
 
     try{
       setLoading(true)
-        const res = await fetch(`/api/auth/register`, {
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/register`, {
             method: `POST`,
             body: formData
             })

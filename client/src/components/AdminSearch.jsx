@@ -8,7 +8,7 @@ const AdminSearch = () => {
 
   const getAdminInfo = async () => {
     try {
-      const res = await fetch('/api/users/me')
+      const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me')
 
       if (res.ok) {
         const data = await res.json()
@@ -23,7 +23,7 @@ const AdminSearch = () => {
 
   const handleLogout = async () => {
     try {
-        const res = await fetch(`/api/auth/logout`, {
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/logout`, {
             method: 'POST',
             credentials: 'same-origin'
         })

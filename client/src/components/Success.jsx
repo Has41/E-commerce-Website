@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import NavBar1 from './NavBar1'
 import Footer2 from './Footer2'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Success = () => {
   const [userData, setUserData] = useState(null)
@@ -9,7 +9,7 @@ const Success = () => {
 
   const checkLogin = async () => {
     try {
-        const res = await fetch(`/api/users/me`)
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`)
         if(res.ok) {
             const data = await res.json()
             setLoggedIn(data)

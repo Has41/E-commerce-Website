@@ -15,7 +15,7 @@ const ShowProduct = () => {
 
     const getAllProducts = async () => {
         try {
-            const res = await fetch('/api/products/get-product')
+            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/products/get-product')
 
             if (res.ok) {
                 const data = await res.json()
@@ -30,7 +30,7 @@ const ShowProduct = () => {
         try {
             const editedProduct = products.find((item) => item._id === id);
             
-            const res = await fetch(`/api/products/update-product/${id}`, {
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/update-product/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const ShowProduct = () => {
 
     const removeProduct = async (id) => {
         try {
-            const res = await fetch(`/api/products/delete-product/${id}`, {
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/delete-product/${id}`, {
                 method: 'DELETE'
             })
             if (res.ok) {
@@ -73,7 +73,7 @@ const ShowProduct = () => {
     const handleChange = async (categoryId, e) => {
         try {
             const { value } = e.target
-            const res = await fetch(`/api/category/update-category/${categoryId}`, {
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/category/update-category/${categoryId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ const ShowProduct = () => {
 
     const getCategory = async () => {
         try {
-            const res = await fetch('/api/category/get-category', {
+            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/get-category', {
                 method: 'GET',
                 credentials: 'same-origin'
             })

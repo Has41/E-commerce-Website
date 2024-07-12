@@ -11,7 +11,7 @@ const AccVerify = () => {
     useEffect(() => {
       const verifyEmailURL = async () => {
           try {
-              const res = await fetch(`/api/auth/${params.id}/verify/${params.token}`)
+              const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/${params.id}/verify/${params.token}`)
 
               if (res.ok) {
                   setValidURL(true)

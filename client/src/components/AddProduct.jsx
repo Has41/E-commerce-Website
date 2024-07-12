@@ -13,7 +13,7 @@ const [quantity, setQuantity] = useState('')
 
 const getCategory = async () => {
   try {
-      const res = await fetch('/api/category/get-category', {
+      const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/get-category', {
           method: 'GET',
           credentials: 'same-origin'
       })
@@ -42,7 +42,7 @@ const createProduct = async (e) => {
   console.log(category)
 
   try {
-    await fetch('/api/products/create-product', {
+    await fetch('https://e-commerce-website-server-eta.vercel.app/api/products/create-product', {
       method: 'POST',
       body: formData,
     })

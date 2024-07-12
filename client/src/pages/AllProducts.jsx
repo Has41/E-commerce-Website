@@ -37,7 +37,7 @@ const AllProducts = () => {
   const getProducts = async (latestData) => {
     try {
       setLoading(true)
-      const res = await fetch(`/api/products/get-listed-product/${latestData.skip}/${latestData.limit}`, {
+      const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/get-listed-product/${latestData.skip}/${latestData.limit}`, {
         method: 'GET',
         credentials: 'same-origin'
       });
@@ -92,7 +92,7 @@ const AllProducts = () => {
 
   const getCategory = async () => {
     try {
-        const res = await fetch('/api/category/get-category')
+        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/get-category')
         if (res.ok) {
             const data = await res.json()
             setCategories(data)
@@ -125,7 +125,7 @@ const AllProducts = () => {
 
 const getProductCount = async () => {
   try {
-    const res = await fetch('/api/products/get-product-count')
+    const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/products/get-product-count')
 
     if (res.ok) {
       const data = await res.json()

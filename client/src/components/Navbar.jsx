@@ -55,7 +55,7 @@ const Navbar = () => {
 
     const getCartItems = async () => {
         try{
-            const res = await fetch(`/api/cart/current`)
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/current`)
             if (res.ok) {
                 const data = await res.json()
                 setCartItems(data)
@@ -80,7 +80,7 @@ const Navbar = () => {
 
     const removeCartItems = async (id) => {
         try {
-            const res = await fetch(`/api/cart/${id}`, {
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/${id}`, {
                 method: 'DELETE'
             })
             if (res.ok) {
@@ -97,7 +97,7 @@ const Navbar = () => {
 
     const checkLogin = async () => {
         try {
-            const res = await fetch(`/api/users/me`)
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`)
             if(res.ok) {
                 const data = await res.json()
                 setLoggedIn(data)
@@ -112,7 +112,7 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-            const res = await fetch(`/api/auth/logout`, {
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/logout`, {
                 method: 'POST',
                 credentials: 'same-origin'
             })

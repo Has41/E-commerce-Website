@@ -14,7 +14,7 @@ const AdminPanel = () => {
 
     const checkLogin = async () => {
         try {
-            const res = await fetch(`/api/users/me`)
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`)
             if(res.ok) {
                 const data = await res.json()
                 setLoggedIn(data)

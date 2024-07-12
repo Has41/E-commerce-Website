@@ -20,7 +20,7 @@ const Category = () => {
         }
 
       try {
-          await fetch('/api/category/create-category', {
+          await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/create-category', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ const Category = () => {
 
 const getCategory = async () => {
     try {
-        const res = await fetch('/api/category/get-category', {
+        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/get-category', {
             method: 'GET',
             credentials: 'same-origin'
         })
@@ -52,7 +52,7 @@ const getCategory = async () => {
 
 const removeCategory = async (id) => {
     try {
-        const res = await fetch(`/api/category/delete-category/${id}`, {
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/category/delete-category/${id}`, {
             method: 'DELETE'
         })
         if (res.ok) {
@@ -67,7 +67,7 @@ const removeCategory = async (id) => {
 
 const handleSaveEdit = async (id, updatedName) => {
     try {
-      const res = await fetch(`/api/category/edit-category/${id}`, {
+      const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/category/edit-category/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

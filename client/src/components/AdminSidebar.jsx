@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 
 const AdminSidebar = ({ onOptionClick }) => {
   const [isEyeVisible, setIsEyeVisible] = useState(false)
-  const [userData, setUserData] = useState(null)
-  const [isLoggedIn, setLoggedIn] = useState(false)
+  // const [userData, setUserData] = useState(null)
+  // const [isLoggedIn, setLoggedIn] = useState(false)
   const [dropDown, setDropDown] = useState(false)
 
   const handleOptionClick = (option) => {

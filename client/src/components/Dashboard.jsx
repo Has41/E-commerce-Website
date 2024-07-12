@@ -54,7 +54,7 @@ const Dashboard = () => {
 
     const addTask = async () => {
       try {
-        const res = await fetch('/api/users/me/add-task', {
+        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/add-task', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ const Dashboard = () => {
 
     const editTask = async (userId, taskId ,updatedTask) => {
       try {
-        const res = await fetch(`/api/users/me/edit-task/${userId}/${taskId}`, {
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me/edit-task/${userId}/${taskId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ const Dashboard = () => {
   const editCompleted = async (userId, taskId, taskCompleted) => {
     const newCompleted = !taskCompleted
     try {
-      const res = await fetch(`/api/users/me/edit-check/${userId}/${taskId}`, {
+      const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me/edit-check/${userId}/${taskId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ const Dashboard = () => {
 
   const removeTask = async (userId, taskId) => {
     try {
-        const res = await fetch(`/api/users/me/delete-task/${userId}/${taskId}`, {
+        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me/delete-task/${userId}/${taskId}`, {
             method: 'DELETE'
         })
         if (res.ok) {
@@ -138,7 +138,7 @@ const Dashboard = () => {
 
     const getAllTask = async () => {
       try {
-        const res = await fetch('/api/users/me/get-task')
+        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/get-task')
 
         if (res.ok) {
           const data = await res.json()
@@ -154,7 +154,7 @@ const Dashboard = () => {
 
     const getAllUsers = async () => {
       try {
-        const res = await fetch('/api/users/me/allUsers')
+        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/allUsers')
   
         if (res.ok) {
           const data = await res.json()
@@ -169,7 +169,7 @@ const Dashboard = () => {
 
     const getAdminInfo = async () => {
       try {
-        const res = await fetch('/api/users/me')
+        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me')
   
         if (res.ok) {
           const data = await res.json()

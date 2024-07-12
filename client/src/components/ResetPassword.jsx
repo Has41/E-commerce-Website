@@ -22,7 +22,7 @@ const ResetPassword = () => {
 
         try {
             setLoading(true)
-            const res = await fetch(`/api/auth/${id}/reset-password/${token}`, {
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/${id}/reset-password/${token}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

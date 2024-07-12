@@ -10,7 +10,7 @@ const OrderPlace = () => {
 
     const fetchOrders = async () => {
         try {
-            const res = await fetch('/api/auth/get-orders')
+            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/auth/get-orders')
 
             if (res.ok) {
                 const data = await res.json()
@@ -26,7 +26,7 @@ const OrderPlace = () => {
     const handleChange = async (orderId, e) => {
         try {
             const { value } = e.target
-            const res = await fetch(`/api/auth/update-orders/${orderId}`, {
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/update-orders/${orderId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
