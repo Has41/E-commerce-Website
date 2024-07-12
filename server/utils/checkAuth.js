@@ -5,22 +5,22 @@ const isAuthentic = (req, res, next) => {
     const token = req.cookies.accessToken
 
     if (!token) {
-        const err = errorHandler(401, 'Token not provided');
-        return next(err);
+        const err = errorHandler(401, 'Token not provided')
+        return next(err)
     }
 
     jwt.verify(token, process.env.SECRET, (err, decodedData) => {
         if (err) {
             if (err.name === 'TokenExpiredError') {
-                const error = errorHandler(401, 'Token has expired');
-                return next(error);
+                const error = errorHandler(401, 'Token has expired')
+                return next(error)
             } else {
-                const error = errorHandler(401, 'Invalid Token');
-                return next(error);
+                const error = errorHandler(401, 'Invalid Token')
+                return next(error)
             }
         } else {
-            req.user = decodedData;
-            return next();
+            req.user = decodedData
+            return next()
         }
     })
 }
@@ -32,8 +32,8 @@ const isAdmin = (req, res, next) => {
         } 
 
     } catch (err) {
-        console.error('isAdmin Error:', err.message);
-        return next(err);
+        console.error('isAdmin Error:', err.message)
+        return next(err)
     }
 }
 
