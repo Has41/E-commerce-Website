@@ -2,6 +2,9 @@ import User from "../model/User.js"
 import fs from 'fs'
 
 const getUserInfo = async (req,res,next) => {
+    if (!req.user || !req.user.id) {
+        return res.status(400).json({ error: 'User not authenticated or ID missing' })
+    }
     try{
         const data = await User.findById(req.user.id).select('name email address phone bio role verification')
         return res.status(200).json(data)
