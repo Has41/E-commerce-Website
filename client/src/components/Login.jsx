@@ -49,6 +49,7 @@ const Login = () => {
              } else {
                 setLoading(false)
                 const userErrorData = await userRes.json()
+                console.error(userErrorData)
                 console.error('Failed to fetch user data:', userRes.status, userErrorData.message)
             }
         } else if (loginRes.status === 401) {
