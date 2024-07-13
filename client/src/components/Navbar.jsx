@@ -123,7 +123,7 @@ const Navbar = () => {
         try {
             const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/logout`, {
                 method: 'POST',
-                credentials: 'same-origin'
+                credentials: 'include'
             })
             if(res.ok) {
                 setUserData(null)
