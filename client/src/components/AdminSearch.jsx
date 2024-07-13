@@ -6,6 +6,8 @@ const AdminSearch = () => {
   const [userDropdown, setUserDropdown] = useState(false)
   const navigate = useNavigate()
 
+  const profilePhoto = "https://e-commerce-website-server-eta.vercel.app/api/users/me/photo"
+
   const getAdminInfo = async () => {
     try {
       const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me', {
@@ -68,11 +70,10 @@ const AdminSearch = () => {
         <i className='bx bx-moon text-[22px]'></i>
       </div>
       <div onClick={() => setUserDropdown(!userDropdown)} className='cursor-pointer'>
-        {/* <img className='rounded-full w-[50px] h-[50px]' src="no-pfp.jpg" alt="" /> */}
         {adminData && (
               <div className='flex justify-center gap-x-2 mr-4'>
                   <div>
-                      <img className='rounded-full w-[35px] h-[35px] border-2 border-white' src={`/api/users/me/photo/${adminData._id}`} alt="" />
+                      <img className='rounded-full w-[35px] h-[35px] border-2 border-white' src={`${profilePhoto}/${adminData._id}`} alt="Photo" />
                   </div>
                   <div>
                     <h2 className='text-[14px] font-semibold'>{adminData.name}</h2>

@@ -287,7 +287,7 @@ const NavBar1 = () => {
             {userData ? (
                 <div className='flex justify-center gap-x-2'>
                     <div>
-                        <img className='rounded-full w-[30px] h-[30px] border-2 border-white' src={`=${profilePic}/${userData._id}`} alt="Photo" />
+                        <img className='rounded-full w-[30px] h-[30px] border-2 border-white' src={`${profilePic}/${userData._id}`} alt="Photo" />
                     </div>
                     <div className=''>
                         <h2 className='text-[14px] font-semibold'>{userData.name}</h2>
