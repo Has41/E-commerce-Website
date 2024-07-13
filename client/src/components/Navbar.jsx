@@ -11,6 +11,8 @@ const Navbar = () => {
     const [userData, setUserData] = useState(null)
     const [total, setTotal] = useState(0)
 
+    const profilePic = "https://e-commerce-website-server-eta.vercel.app/api/users/me/photo"
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -292,7 +294,7 @@ const Navbar = () => {
                 {userData ? (
                 <div className='flex justify-center gap-x-2'>
                     <div>
-                        <img className='rounded-full w-[30px] h-[30px] border-2 border-white' src={`/api/users/me/photo/${userData._id}`} alt="" />
+                        <img className='rounded-full w-[30px] h-[30px] border-2 border-white' src={`${profilePic}/${userData._id}`} alt="Photo" />
                     </div>
                     <div className=''>
                         <h2 className='text-[14px] font-semibold'>{userData.name}</h2>
