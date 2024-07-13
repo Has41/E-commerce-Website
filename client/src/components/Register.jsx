@@ -69,7 +69,7 @@ const Register = () => {
             <p className='uppercase font-mont lg:font-poppins lg:tracking-wider font-semibold text-black/80 text-xl lg:text-3xl lg:mb-8 lg:-mt-4'>Register</p>
             {errorMessage && <div className='lg:text-red-800 lg:font-medium lg:bg-red-100 lg:text-xl lg:py-3 lg:mt-[-20px] lg:max-w-full lg:w-[75%] rounded-sm lg:mx-auto'>{errorMessage}</div>}
             {message && <div className='lg:text-green-700 lg:font-medium lg:bg-green-200 lg:w-[85%] lg:py-3 lg:mt-[-20px] lg:max-w-full rounded-sm lg:mx-auto'>{message}</div>}
-            <form method='post' onSubmit={register} action='/api/auth/register'>
+            <form method='post' onSubmit={register}>
               <div className='sm:w-[400px] w-[310px] lg:w-[85%] mx-auto sm:mx-auto lg:mx-auto'>
               <div className='space-y-5 mt-4 lg:ml-0 sm:flex sm:flex-col sm:items-center sm:w-full lg:flex lg:flex-col lg:items-center lg:justify-center sm:overflow-hidden'>
                   <input value={name} onChange={(e) => setName(e.target.value)} className='py-2 lg:py-3 rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full' type="text" placeholder='Enter your name' />

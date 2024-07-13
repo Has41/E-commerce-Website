@@ -73,7 +73,7 @@ const ShowProduct = () => {
     const handleChange = async (categoryId, e) => {
         try {
             const { value } = e.target
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/category/update-category/${categoryId}`, {
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/category/edit-category/${categoryId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -179,7 +179,7 @@ const ShowProduct = () => {
                                     </td>
                                     <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
                                         {editable === items._id ? (
-                                            <select className='w-[160px] pl-2 py-1 border border-slate-300 focus:outline-none focus:border-none focus:shadow-none' value={items.category} onChange={(e) => handleChange(items._id, e)} name="" id="">
+                                            <select className='w-[160px] pl-2 py-1 border border-slate-300 focus:outline-none focus:border-none focus:shadow-none' value={items.category} onChange={(e) => handleChange(items._id, e)}>
                                                 {category?.map((elements, index) => (
                                                     <option key={index} value={elements.name}>{elements.name}</option>
                                                 ))}

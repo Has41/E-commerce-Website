@@ -55,7 +55,10 @@ const Navbar = () => {
 
     const getCartItems = async () => {
         try{
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/current`)
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/current`, {
+                method: 'GET',
+                credentials: 'include'
+            })
             if (res.ok) {
                 const data = await res.json()
                 setCartItems(data)
@@ -97,7 +100,11 @@ const Navbar = () => {
 
     const checkLogin = async () => {
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`)
+            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+
             if(res.ok) {
                 const data = await res.json()
                 setLoggedIn(data)

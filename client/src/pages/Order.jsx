@@ -9,14 +9,17 @@ const Order = () => {
 
     const fetchOrders = async () => {
         try {
-            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/auth/orders')
+            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/auth/orders', {
+                method: "GET",
+                credentials: "include"
+            })
 
             if (res.ok) {
                 const data = await res.json()
-                console.log(data.products);
+                console.log(data.products)
                 setOrders(data)
             } else {
-                console.error('Error fetching orders!');
+                console.error('Error fetching orders!')
             }
         } catch (err) {
             console.error(err)

@@ -10,13 +10,16 @@ const OrderPlace = () => {
 
     const fetchOrders = async () => {
         try {
-            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/auth/get-orders')
+            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/auth/get-orders', {
+                method: "GET",
+                credentials: "include"
+            })
 
             if (res.ok) {
                 const data = await res.json()
                 setOrders(data)
             } else {
-                console.error('Error fetching orders!');
+                console.error('Error fetching orders!')
             }
         } catch (err) {
             console.error(err)
@@ -31,14 +34,15 @@ const OrderPlace = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ status: value })
+                body: JSON.stringify({ status: value }),
+                credentials: "include"
             })
 
             if (res.ok) {
                 fetchOrders()
             }
         } catch (err) {
-            console.error(err);
+            console.error(err)
         }
     }
 

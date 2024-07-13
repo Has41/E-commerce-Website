@@ -44,6 +44,7 @@ const createProduct = async (e) => {
   try {
     await fetch('https://e-commerce-website-server-eta.vercel.app/api/products/create-product', {
       method: 'POST',
+      credentials: "include",
       body: formData,
     })
 

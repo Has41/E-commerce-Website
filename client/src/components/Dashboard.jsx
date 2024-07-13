@@ -154,7 +154,10 @@ const Dashboard = () => {
 
     const getAllUsers = async () => {
       try {
-        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/allUsers')
+        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/allUsers', {
+          method: "GET",
+          credentials: "include"
+        })
   
         if (res.ok) {
           const data = await res.json()
@@ -169,7 +172,10 @@ const Dashboard = () => {
 
     const getAdminInfo = async () => {
       try {
-        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me')
+        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me', {
+          method: "GET",
+          credentials: "include"
+        })
   
         if (res.ok) {
           const data = await res.json()

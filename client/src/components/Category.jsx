@@ -25,7 +25,8 @@ const Category = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: name })
+            body: JSON.stringify({ name: name }),
+            credentials: "include"
         })
 
     } catch (err) {
