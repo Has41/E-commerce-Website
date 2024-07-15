@@ -58,7 +58,7 @@ const Login = () => {
             }
         } else if (loginRes.status === 401) {
             setLoading(false)
-            setErrorMessage('Incorrect email or password.')
+            setErrorMessage('Incorrect email or password!')
         } else {
             setLoading(false)
             const errorData = await loginRes.json()
@@ -67,7 +67,7 @@ const Login = () => {
         }
     } catch (err) {
         setLoading(true)
-        setErrorMessage('An unexpected error occurred. Please try again.')
+        setErrorMessage('Unexpected error occurred. Please try again.')
         console.error('Login Error:', err.message)
     }
 }
@@ -78,14 +78,14 @@ const Login = () => {
     <section className='bg-slate-50 py-8 lg:py-20 max-w-[400px] sm:max-w-[700px] lg:max-w-full w-full'>
         <div className='text-center bg-white sm:space-y-8 mx-auto sm:mx-auto py-8 lg:py-16 lg:mx-auto rounded-sm shadow-sm lg:w-[40%] lg:shadow-md'>
             <p className='uppercase font-mont lg:font-poppins lg:tracking-wider font-semibold text-black/80 text-2xl lg:text-4xl lg:mb-8 lg:-mt-4'>Login</p>
-            {errorMessage && <div className='lg:text-red-800 lg:font-medium lg:bg-red-100 lg:text-xl lg:py-3 lg:mt-[-20px] lg:max-w-full lg:w-[75%] rounded-sm lg:mx-auto'>{errorMessage}</div>}
+            {errorMessage && <div className='text-red-800 font-medium bg-red-100 py-3 lg:mt-[-20px] mt-2 lg:text-base text-sm lg:max-w-full max-w-[80%] mx-auto lg:w-[75%] rounded-sm'>{errorMessage}</div>}
             <form onSubmit={login} method="POST">
                 <div className='sm:w-[400px] w-[310px] lg:w-[85%] lg:mx-auto mx-auto sm:mx-auto'>
                 <div className='space-y-5 mt-4 sm:flex sm:flex-col lg:flex lg:flex-col lg:items-center lg:justify-center'>
-                  <input value={email} onChange={(e) => setEmail(e.target.value)} className='py-2 lg:py-3 rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="email" placeholder='Enter your email' />
-                  <input value={password} onChange={(e) => setPassword(e.target.value)} className='py-2 lg:py-3 rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="password" placeholder='Enter your password' />
+                  <input value={email} onChange={(e) => setEmail(e.target.value)} className='py-2 lg:py-3 rounded-sm border lg:text-base text-sm border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="email" placeholder='Enter your email' />
+                  <input value={password} onChange={(e) => setPassword(e.target.value)} className='py-2 lg:py-3 rounded-sm lg:text-base text-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="password" placeholder='Enter your password' />
                 </div>
-                <div className='flex items-center justify-center gap-x-32 space-x-1 mt-4'>
+                <div className='flex items-center justify-center lg:gap-x-32 gap-x-14 space-x-1 mt-4'>
                     <div className='flex items-center justify-center gap-x-1'>
                         <input className='rounded-sm lg:text-lg border border-slate-300 active:border active:border-amber-500 checked:bg-amber-500 focus:border-transparent focus:ring-0' type="checkbox" />
                         <p className='font-poppins text-sm text-slate-500'>Remember me</p>

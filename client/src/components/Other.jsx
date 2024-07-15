@@ -43,10 +43,10 @@ const Other = () => {
 
     <section className='mt-12 flex flex-col items-center justify-center'>
         <div className='w-full h-[40vh] md:w-[99%] md:rounded-sm bg-scroll md:bg-fixed bg-cover bg-center md:h-[65vh] relative' style={{ backgroundImage: 'url("/Follow.png")'}}>
-            <div className='bg-black/30 w-full h-[40vh] md:h-[65vh] lg:flex lg:flex-col lg:items-center lg:justify-center'>
-                <div className='text-center rounded-sm shadow-lg lg:shadow-xl w-[90%] lg:w-full lg:h-[50%] my-auto bg-white space-y-14'>
-                <p data-aos="fade-up" data-aos-duration="300" className="text-black relative mt-8 font-poppins tracking-wider text-2xl font-bold lg:text-5xl after:h-[2px] lg:after:h-[4px] after:rounded-lg after:w-[70px] lg:after:w-[200px] after:bg-amber-500 after:absolute after:bottom-[-8px] lg:after:bottom-[-14px] lg:after:left-[42%] after:left-[49%] after:content-''">Follow Us!</p>
-                <div data-aos="fade-up" data-aos-duration="300" className='space-x-6 text-lg lg:text-3xl lg:relative lg:space-x-10'>
+            <div className='bg-black/30 w-full h-[40vh] flex items-center justify-center md:h-[65vh] lg:flex lg:flex-col lg:items-center lg:justify-center'>
+                <div className='text-center rounded-sm shadow-lg lg:shadow-xl w-[90%] lg:w-full lg:h-[50%] my-auto bg-white lg:space-y-14 space-y-8'>
+                <p data-aos="fade-up" data-aos-duration="300" className="text-black relative mt-8 font-poppins tracking-wider text-2xl font-bold lg:text-5xl after:h-[2px] lg:after:h-[4px] after:rounded-lg after:w-[70px] lg:after:w-[200px] after:bg-amber-500 after:absolute after:bottom-[-4px] lg:after:bottom-[-14px] lg:after:left-[42%] after:left-[39%] after:content-''">Follow Us!</p>
+                <div data-aos="fade-up" data-aos-duration="300" className='space-x-6 text-lg lg:text-3xl lg:relative lg:space-x-10 pb-6'>
                     <i className='bx bxl-facebook'></i>
                     <i className='bx bxl-instagram'></i>
                     <i className='bx bxl-twitter'></i>

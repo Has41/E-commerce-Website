@@ -8,6 +8,9 @@ dist/
 # Environment variables file
 .env
 
+# Proxy setup file
+src/setupProxy.js
+
 # Logs
 logs
 *.log

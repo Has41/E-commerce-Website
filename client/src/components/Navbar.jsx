@@ -150,7 +150,7 @@ const Navbar = () => {
   return (
     <nav className='flex items-center justify-between py-8 font-poppins'>
     <Link to={`/`}>
-      <div className='uppercase text-3xl font-bold ml-12 text-white'>
+      <div className='uppercase lg:text-3xl text-2xl font-bold ml-12 text-white'>
         HASS.
       </div>
     </Link>
@@ -159,11 +159,11 @@ const Navbar = () => {
         <div className='lg:hidden flex'>
             <div className='text-3xl mr-4 cursor-pointer'>
                 <Link to={`myCart`}>
-                    <i className='bx bxs-cart-alt text-white'></i>
+                    <i className='bx bxs-cart-alt text-white text-2xl'></i>
                 </Link>
             </div>
             <button onClick={() => setMobileMenu(!mobileMenu)} className='text-3xl mr-10 cursor-pointer'>
-                {mobileMenu ? <i className='bx bx-x'></i> : <i className='bx bx-menu-alt-right text-white'></i>}
+                {mobileMenu ? <i className='bx bx-x'></i> : <i className='bx bx-menu-alt-right text-white text-3xl'></i>}
             </button>
         </div>
 

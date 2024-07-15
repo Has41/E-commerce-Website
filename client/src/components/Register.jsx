@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault()
 
     if (!name || !password ||!email || !address || !phone || !bio) {
-      setErrorMessage('Missing Fields! Please Fill All Required Fields')
+      setErrorMessage('Please Fill All Required Fields!')
     }
 
     const formData = new FormData()
@@ -48,8 +48,6 @@ const Register = () => {
             }
         } catch(err) {
           setLoading(false)
-          console.error(err.message)
-          setErrorMessage('Error: Something went wrong.')
         }
     }
 
@@ -67,23 +65,23 @@ const Register = () => {
     <section className='bg-slate-50 py-8 lg:py-20 max-w-[400px] sm:max-w-[700px] lg:max-w-full'>
         <div className='text-center bg-white py-8 lg:py-16 mx-auto sm:mx-auto lg:mx-auto lg:w-[40%] sm:space-y-8 rounded-sm shadow-sm lg:shadow-md'>
             <p className='uppercase font-mont lg:font-poppins lg:tracking-wider font-semibold text-black/80 text-xl lg:text-3xl lg:mb-8 lg:-mt-4'>Register</p>
-            {errorMessage && <div className='lg:text-red-800 lg:font-medium lg:bg-red-100 lg:text-xl lg:py-3 lg:mt-[-20px] lg:max-w-full lg:w-[75%] rounded-sm lg:mx-auto'>{errorMessage}</div>}
-            {message && <div className='lg:text-green-700 lg:font-medium lg:bg-green-200 lg:w-[85%] lg:py-3 lg:mt-[-20px] lg:max-w-full rounded-sm lg:mx-auto'>{message}</div>}
+            {errorMessage && <div className='text-red-800 font-medium bg-red-100 py-3 lg:mt-[-20px] mt-2 lg:text-base text-sm lg:max-w-full max-w-[80%] lg:w-[75%] rounded-sm mx-auto'>{errorMessage}</div>}
+            {message && <div className='text-green-700 font-medium bg-green-200 lg:w-[85%] lg:py-3 lg:mt-[-20px] lg:text-base text-sm lg:max-w-full max-w-[80%] rounded-sm mx-auto'>{message}</div>}
             <form method='post' onSubmit={register}>
               <div className='sm:w-[400px] w-[310px] lg:w-[85%] mx-auto sm:mx-auto lg:mx-auto'>
               <div className='space-y-5 mt-4 lg:ml-0 sm:flex sm:flex-col sm:items-center sm:w-full lg:flex lg:flex-col lg:items-center lg:justify-center sm:overflow-hidden'>
-                  <input value={name} onChange={(e) => setName(e.target.value)} className='py-2 lg:py-3 rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full' type="text" placeholder='Enter your name' />
-                  <input value={email} onChange={(e) => setEmail(e.target.value)} className='py-2 lg:py-3 rounded-sm border border-slate-300 lg:w-full w-full h-[40px] sm:w-full' type="email" placeholder='Enter your email' />
-                  <input value={password} onChange={(e) => setPassword(e.target.value)} className='py-2 lg:py-3 rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="password" placeholder='Enter your password' />
-                  <input value={address} onChange={(e) => setAddress(e.target.value)} className='py-2 lg:py-3 rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full' type="text" placeholder='Enter your address' />
-                  <input value={bio} onChange={(e) => setBio(e.target.value)} className='py-2 lg:py-3 rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full' type="text" placeholder='Enter short bio (Optional)' />
+                  <input value={name} onChange={(e) => setName(e.target.value)} className='py-2 lg:py-3 lg:text-base text-sm rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full' type="text" placeholder='Enter your name' />
+                  <input value={email} onChange={(e) => setEmail(e.target.value)} className='py-2 lg:py-3 lg:text-base text-sm rounded-sm border border-slate-300 lg:w-full w-full h-[40px] sm:w-full' type="email" placeholder='Enter your email' />
+                  <input value={password} onChange={(e) => setPassword(e.target.value)} className='py-2 lg:py-3 lg:text-base text-sm rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="password" placeholder='Enter your password' />
+                  <input value={address} onChange={(e) => setAddress(e.target.value)} className='py-2 lg:py-3 lg:text-base text-sm rounded-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full' type="text" placeholder='Enter your address' />
+                  <input value={bio} onChange={(e) => setBio(e.target.value)} className='py-2 lg:py-3 rounded-sm lg:text-base text-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full' type="text" placeholder='Enter short bio (Optional)' />
                   <form className="w-full mx-auto">
                     <div className="flex items-center">
-                      <div className="z-10 h-[39px] w-[60px] flex items-center justify-center py-2.5 px-4 font-medium text-center text-white bg-black/85">
+                      <div className="z-10 h-[39px] w-[60px] lg:text-base text-sm flex items-center justify-center py-2.5 px-4 font-medium text-center text-white bg-black/85">
                           +92
                       </div>
                       <div className="relative w-full">
-                          <input type="phone" value={phone} onChange={handlePhoneChange} className="p-2.5 w-full h-[40px] z-20 text-gray-900 rounded-sm border-s-0 border border-gray-300" pattern="[0-9]{3}-[0-9]{7}" placeholder="Enter phone number"/>
+                          <input type="phone" value={phone} onChange={handlePhoneChange} className="p-2.5 w-full h-[40px] lg:text-base text-sm z-20 text-gray-900 rounded-sm border-s-0 border border-gray-300" pattern="[0-9]{3}-[0-9]{7}" placeholder="Enter phone number"/>
                       </div>
                   </div>
                 </form>
