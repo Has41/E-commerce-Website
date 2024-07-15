@@ -24,6 +24,7 @@ import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import useAuth from './hooks/useAuth'
 import { Navigate } from 'react-router-dom'
+import NotFound from './pages/NotFound'
 
 const App = () => {
   const { isLoggedIn, role, loading } = useAuth()
@@ -148,6 +149,9 @@ const App = () => {
           <Route path='/place-order' element={<OrderPlace />} />
           <Route path='/users/:id/verify/:token' element={<AccVerify />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
+
+          {/* Not Found Page */}
+          <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
     </>
