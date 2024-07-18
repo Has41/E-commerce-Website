@@ -23,7 +23,7 @@ const useAuth = () => {
 
         if (res.ok) {
           const data = await res.json()
-          console.log(data)
+          console.log(data.role)
           setIsLoggedIn(true)
           setRole(data.role)    
         } else {
