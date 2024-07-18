@@ -23,7 +23,6 @@ import AccVerify from './components/AccVerify'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import useAuth from './hooks/useAuth'
-import { Navigate } from 'react-router-dom'
 import NotFound from './pages/NotFound'
 
 const App = () => {

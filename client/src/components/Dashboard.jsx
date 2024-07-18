@@ -156,7 +156,10 @@ const Dashboard = () => {
       try {
         const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/allUsers', {
           method: "GET",
-          credentials: "include"
+          credentials: "include",
+          headers: {
+            'Content-Type': 'application/json'
+          }
         })
   
         if (res.ok) {
