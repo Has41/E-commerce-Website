@@ -24,9 +24,11 @@ import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import useAuth from './hooks/useAuth'
 import NotFound from './pages/NotFound'
+import { useNavigate } from 'react-router-dom'
 
 const App = () => {
   const { isLoggedIn, role, loading } = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     AOS.init()
@@ -97,6 +99,12 @@ const App = () => {
       <Route path="/register" element={<Register />} />
     </>
   )
+
+  useEffect(() => {
+    if (isLoggedIn && role === 'admin') {
+      navigate('/dashboard')
+    }
+  }, [isLoggedIn, role, navigate])
 
   return (
     <>
