@@ -20,8 +20,10 @@ const useAuth = () => {
             method: 'GET',
             credentials: 'include'
         })
+
         if (res.ok) {
           const data = await res.json()
+          console.log(data)
           setIsLoggedIn(true)
           setRole(data.role)    
         } else {
