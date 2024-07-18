@@ -39,6 +39,12 @@ const App = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (isLoggedIn && role === 'admin') {
+      navigate('/dashboard')
+    }
+  }, [isLoggedIn, role, navigate])
+
   if (loading) {
     return (
       <>
@@ -99,12 +105,6 @@ const App = () => {
       <Route path="/register" element={<Register />} />
     </>
   )
-
-  useEffect(() => {
-    if (isLoggedIn && role === 'admin') {
-      navigate('/dashboard')
-    }
-  }, [isLoggedIn, role, navigate])
 
   return (
     <>
