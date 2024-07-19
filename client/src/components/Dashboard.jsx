@@ -20,6 +20,10 @@ const Dashboard = () => {
   const expandEmail = isEmailExpanded ? 'break-words' : 'overflow-hidden overflow-ellipsis'
   const expandAddress = isAddressExpanded ? 'break-words' : 'overflow-hidden overflow-ellipsis'
   const expandTask = isTaskExpanded ? 'break-words' : 'overflow-hidden overflow-ellipsis'
+
+  const apiURL = process.env.REACT_APP_API_URL
+
+  const userPhoto = `${apiURL}/api/users/me/photo`
     
   const [chart, setChart] = useState({
         series: [44, 55, 41, 17],
@@ -54,8 +58,9 @@ const Dashboard = () => {
 
     const addTask = async () => {
       try {
-        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/add-task', {
+        const res = await fetch(`${apiURL}/api/users/me/add-task`, {
           method: 'POST',
+          credentials: "include",
           headers: {
             'Content-Type': 'application/json'
         },
@@ -77,8 +82,9 @@ const Dashboard = () => {
 
     const editTask = async (userId, taskId ,updatedTask) => {
       try {
-        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me/edit-task/${userId}/${taskId}`, {
+        const res = await fetch(`${apiURL}/api/users/me/edit-task/${userId}/${taskId}`, {
           method: 'PUT',
+          credentials: "include",
           headers: {
             'Content-Type': 'application/json',
           },
@@ -98,8 +104,9 @@ const Dashboard = () => {
   const editCompleted = async (userId, taskId, taskCompleted) => {
     const newCompleted = !taskCompleted
     try {
-      const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me/edit-check/${userId}/${taskId}`, {
+      const res = await fetch(`${apiURL}/api/users/me/edit-check/${userId}/${taskId}`, {
         method: 'PUT',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
         },
@@ -123,22 +130,29 @@ const Dashboard = () => {
 
   const removeTask = async (userId, taskId) => {
     try {
-        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me/delete-task/${userId}/${taskId}`, {
-            method: 'DELETE'
+        const res = await fetch(`${apiURL}/api/users/me/delete-task/${userId}/${taskId}`, {
+            method: 'DELETE',
+            credentials: "include"
         })
         if (res.ok) {
             setAllTasks(allTasks.filter((item) => item._id !== taskId))
         } else {
-            console.error('Error removing category!')
+            console.error('Error removing Task!')
         }
     } catch (err) {
-        console.error(err);
+        console.error(err)
     }
 }
 
     const getAllTask = async () => {
       try {
-        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/get-task')
+        const res = await fetch(`${apiURL}/api/users/me/get-task`, {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
 
         if (res.ok) {
           const data = await res.json()
@@ -154,7 +168,7 @@ const Dashboard = () => {
 
     const getAllUsers = async () => {
       try {
-        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/allUsers', {
+        const res = await fetch(`${apiURL}/api/users/me/allUsers`, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -175,7 +189,7 @@ const Dashboard = () => {
 
     const getAdminInfo = async () => {
       try {
-        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me', {
+        const res = await fetch(`${apiURL}/api/users/me`, {
           method: "GET",
           credentials: "include"
         })
@@ -204,31 +218,31 @@ const Dashboard = () => {
 
   return (
     <>
-    <main className='w-[80%] bg-slate-50 fixed right-0 bottom-0 h-full shadow-md overflow-y-auto font-poppins'>
+    <main className='w-[85%] bg-slate-50 fixed right-0 bottom-0 h-full shadow-md overflow-y-auto font-poppins'>
           <AdminSearch />
-        <div className='mt-20 px-6 py-4'>
-          <h3 className='text-lg'>Welcome, {adminData?.name}</h3>
-          <p className='text-black/70'>Here's what's happening with your store today.</p>
+        <div className='mt-20 ml-6 px-6 py-4'>
+          <h3>Welcome, {adminData?.name}</h3>
+          <p className='text-black/70 text-sm'>Here's what's happening with your store today.</p>
         </div>
 
         <div className='max-w-full grid grid-cols-3 items-center justify-center ml-14 mt-4'>
 
           <div>
-            <div className='bg-white w-[270px] h-[180px] shadow-md flex flex-col items-center justify-center gap-y-6'>
+            <div className='bg-white w-[240px] h-[150px] shadow-md flex flex-col items-center justify-center gap-y-6'>
               <div className='flex gap-x-8'>
-                <p className='font-semibold uppercase'>Total Earning!</p>
+                <p className='font-semibold uppercase text-sm'>Total Earning!</p>
                 <div className='flex gap-x-1'>
                   <i className='bx bx-trending-up text-green-400'></i>
-                  <p className='text-green-400'>+16.41%</p>
+                  <p className='text-green-400 text-sm'>+16.41%</p>
                 </div>
               </div>
               <div className='mr-28'>
-                <p className='text-xl font-semibold'>$516.20k</p>
+                <p className='font-semibold'>$516.20k</p>
               </div>
               <div className='flex items-center gap-x-14'>
-                <p className='uppercase'>All Orders</p>
+                <p className='uppercase text-sm'>All Orders</p>
                 <div className=''>
-                  <i className='bx bxs-dollar-circle text-green-400 text-[50px]'></i>
+                  <i className='bx bxs-dollar-circle text-green-400 text-4xl'></i>
                 </div>
               </div>
             </div>
@@ -236,21 +250,21 @@ const Dashboard = () => {
 
 
           <div>
-            <div className='bg-white w-[270px] h-[180px] shadow-md flex flex-col items-center justify-center gap-y-6'>
+            <div className='bg-white w-[240px] h-[150px] shadow-md flex flex-col items-center justify-center gap-y-6'>
               <div className='flex gap-x-8'>
-                <p className='font-semibold uppercase'>Orders!</p>
+                <p className='font-semibold uppercase text-sm'>Orders!</p>
                 <div className='flex gap-x-1'>
                   <i className='bx bx-trending-down text-amber-500'></i>
-                  <p className='text-amber-500'>+20.53%</p>
+                  <p className='text-amber-500 text-sm'>+20.53%</p>
                 </div>
               </div>
               <div className='mr-28'>
-                <p className='text-xl font-semibold'>36,789</p>
+                <p className='font-semibold'>36,789</p>
               </div>
               <div className='flex items-center gap-x-14'>
-                <p className='uppercase'>All Orders</p>
+                <p className='uppercase text-sm'>All Orders</p>
                 <div className=''>
-                  <i className='bx bxs-shopping-bag text-amber-500 text-[50px]'></i>
+                  <i className='bx bxs-shopping-bag text-amber-500 text-4xl'></i>
                 </div>
               </div>
             </div>
@@ -259,21 +273,21 @@ const Dashboard = () => {
 
 
           <div>
-            <div className='bg-white w-[270px] h-[180px] shadow-md flex flex-col items-center justify-center gap-y-6'>
+            <div className='bg-white w-[240px] h-[150px] shadow-md flex flex-col items-center justify-center gap-y-6'>
               <div className='flex gap-x-8'>
-                <p className='font-semibold uppercase'>Customers</p>
+                <p className='font-semibold uppercase text-sm'>Customers</p>
                 <div className='flex gap-x-1'>
                   <i className='bx bx-trending-up text-gray-400'></i>
-                  <p className='text-gray-400'>+16.41%</p>
+                  <p className='text-gray-400 text-sm'>+16.41%</p>
                 </div>
               </div>
               <div className='mr-28'>
-                <p className='text-xl font-semibold'>183.5M</p>
+                <p className='font-semibold'>183.5M</p>
               </div>
               <div className='flex items-center gap-x-14'>
-                <p className='uppercase'>All Customers</p>
+                <p className='uppercase text-sm'>All Customers</p>
                 <div className=''>
-                  <i className='bx bxs-user-circle text-[50px] text-gray-400'></i>
+                  <i className='bx bxs-user-circle text-4xl text-gray-400'></i>
                 </div>
               </div>
             </div>
@@ -283,8 +297,8 @@ const Dashboard = () => {
         </div>
 
         <div className='mt-10'>
-        <table className="w-[80%] mx-auto text-sm text-left text-gray-500 shadow-lg">
-        <thead className="text-base text-white uppercase bg-black/80">
+        <table className="w-[90%] mx-auto text-left text-gray-500 shadow-lg">
+        <thead className="text-xs text-white uppercase bg-black/80">
             <tr>
                 <th scope="col" className="px-6 py-3">
                     #
@@ -311,12 +325,12 @@ const Dashboard = () => {
         </thead>
         <tbody>
           {usersData?.map((user, index) => {
-              return <tr key={user._id} className="bg-white border hover:bg-gray-50 text-[14px]">
+              return <tr key={user._id} className="bg-white border hover:bg-gray-50 text-sm">
               <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">             
                   {index+1}
               </td>
               <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">             
-                  <img className='rounded-full w-[50px] h-[50px]' src={`/api/users/me/photo/${user._id}`} alt="" />
+                  <img className='rounded-full w-[50px] h-[50px]' src={`${userPhoto}/${user._id}`} alt="Photo" />
               </td>
               <td scope="row" className={`px-6 py-4 cursor-pointer font-medium text-gray-900 whitespace-nowrap text-center ${expandUser}`} onClick={toggleUserExpansion}>             
                   {user.name}
@@ -324,7 +338,7 @@ const Dashboard = () => {
               <td scope="row" className={`px-6 cursor-pointer py-4 max-w-[180px] font-medium text-gray-900 ${expandEmail}`} onClick={toggleEmailExpansion}>             
                   {user.email}
               </td>
-              <td scope="row" className={`px-6 py-4 cursor-pointer font-medium max-w-[180px] text-gray-900 whitespace-nowrap ${expandAddress}`} onClick={toggleAddressExpansion}>             
+              <td scope="row" className={`px-6 py-4 cursor-pointer font-medium max-w-[170px] text-gray-900 whitespace-nowrap ${expandAddress}`} onClick={toggleAddressExpansion}>             
                   {user.address}
               </td>
               <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">             
@@ -343,37 +357,37 @@ const Dashboard = () => {
       <div className='flex'>
 
         <div className='mt-14 ml-14 bg-white w-[40%] h-[38%] pt-2 shadow-md mb-8'>
-          <div className='text-lg pl-5 pt-3 pb-3 mb-4 border-b'>Orders Status</div>
-          <Chart series={chart.series} options={chart.options} width={400} height={500} type='donut' />
+          <div className='pl-5 pt-3 pb-3 mb-4 border-b'>Orders Status</div>
+          <Chart series={chart.series} options={chart.options} width={350} height={600} type='donut' />
         </div>
 
         <div className='mt-14 ml-8 bg-white w-[50%] h-[38%] pt-2 shadow-md mb-8'>
-          <div className='px-5 pt-3 pb-3 bg-black/80 text-white border-b flex justify-between'>
-            <div className='text-lg font-semibold'>TODO List</div>
+          <div className='px-5 pt-3 pb-2 bg-black/80 text-white border-b flex justify-between'>
+            <div className='font-semibold'>TODO List</div>
             <div>
-              <button onClick={() => setShowInput(!showInput)} className='bg-green-500 font-semibold text-white px-4 py-1 flex items-center rounded-sm gap-x-1 hover:bg-green-600 hover:transition-all hover:duration-300 uppercase'>
+              <button onClick={() => setShowInput(!showInput)} className='bg-green-500 font-semibold text-white px-3 py-1 flex items-center rounded-sm gap-x-1 hover:bg-green-600 hover:transition-all hover:duration-300 uppercase'>
                 <i className='bx bx-plus'></i>
-                <p>Add</p>
+                <p className='text-sm'>Add</p>
               </button>
             </div>
           </div>
           {/* Show all tasks */}
           <div className='overflow-y-auto max-h-72'>
           {allTasks?.map((tasks, index) => {       
-              return <div key={index} className={`pl-4 py-3 border-b text-[14px] flex justify-between ${tasks.completed === true ? 'line-through' : 'none'}`}>
+              return <div key={index} className={`pl-4 py-3 border-b text-sm flex justify-between ${tasks.completed === true ? 'line-through' : 'none'}`}>
                     {editable === tasks._id ? (
                         <div>
                             <input
                                 type='text'
                                 value={tasks.task}
-                                className='border border-slate-300 w-[350px]'
+                                className='border border-slate-300 text-sm w-[350px]'
                                 onChange={(e) => {
                                     const updatedTasks = allTasks.map((item) => {
                                         if (item._id === tasks._id) {
-                                            return { ...item, task: e.target.value };
+                                            return { ...item, task: e.target.value }
                                        }
-                                        return item;
-                                    });
+                                        return item
+                                    })
                                     setAllTasks(updatedTasks)
                                 }}
                             />

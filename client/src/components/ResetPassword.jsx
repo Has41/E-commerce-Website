@@ -12,6 +12,8 @@ const ResetPassword = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
+    const apiURL = process.env.REACT_APP_API_URL
+
     const resetPassword = async (e) => {
         e.preventDefault()
 
@@ -22,7 +24,7 @@ const ResetPassword = () => {
 
         try {
             setLoading(true)
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/${id}/reset-password/${token}`, {
+            const res = await fetch(`${apiURL}/api/auth/${id}/reset-password/${token}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

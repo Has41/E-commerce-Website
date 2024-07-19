@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/AuthContext'
 
 const NavBar1 = () => {
     const [mobileMenu, setMobileMenu] = useState(false)
@@ -11,7 +12,11 @@ const NavBar1 = () => {
     const [userData, setUserData] = useState(null)
     const [total, setTotal] = useState(0)
 
-    const profilePic = "https://e-commerce-website-server-eta.vercel.app/api/users/me/photo"
+    const { logout } = useAuth()
+
+    const apiURL = process.env.REACT_APP_API_URL
+
+    const profilePic = `${apiURL}/api/users/me/photo`
 
     const navigate = useNavigate()
 
@@ -57,7 +62,7 @@ const NavBar1 = () => {
 
     const getCartItems = async () => {
         try{
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/current`)
+            const res = await fetch(`${apiURL}/api/cart/current`)
             if (res.ok) {
                 const data = await res.json()
                 setCartItems(data)
@@ -82,7 +87,7 @@ const NavBar1 = () => {
 
     const removeCartItems = async (id) => {
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/${id}`, {
+            const res = await fetch(`${apiURL}/api/cart/${id}`, {
                 method: 'DELETE'
             })
             if (res.ok) {
@@ -100,7 +105,7 @@ const NavBar1 = () => {
 
     const checkLogin = async () => {
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`, {
+            const res = await fetch(`${apiURL}/api/users/me`, {
                 method: "GET",
                 credentials: "include"
             })
@@ -118,13 +123,14 @@ const NavBar1 = () => {
 
     const handleLogout = async () => {
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/logout`, {
+            const res = await fetch(`${apiURL}/api/auth/logout`, {
                 method: 'POST',
                 credentials: 'include'
             })
             if(res.ok) {
                 setUserData(null)
                 setLoggedIn(false)
+                logout()
                 setUserDropdown(false)
                 navigate(`/login`)
             } else {

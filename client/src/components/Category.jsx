@@ -7,6 +7,8 @@ const Category = () => {
     const [category, setCategory] = useState([])
     const [editable, setEditable] = useState(null)
 
+    const apiURL = process.env.REACT_APP_API_URL
+
     const handleEditClick = (id) => {
         // Set the category with id as editable
         setEditable(id)
@@ -20,7 +22,7 @@ const Category = () => {
         }
 
       try {
-          await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/create-category', {
+          await fetch(`${apiURL}/api/category/create-category`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -36,7 +38,7 @@ const Category = () => {
 
 const getCategory = async () => {
     try {
-        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/get-category', {
+        const res = await fetch(`${apiURL}/api/category/get-category`, {
             method: 'GET',
             credentials: 'same-origin'
         })
@@ -53,7 +55,7 @@ const getCategory = async () => {
 
 const removeCategory = async (id) => {
     try {
-        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/category/delete-category/${id}`, {
+        const res = await fetch(`${apiURL}/api/category/delete-category/${id}`, {
             method: 'DELETE'
         })
         if (res.ok) {
@@ -68,7 +70,7 @@ const removeCategory = async (id) => {
 
 const handleSaveEdit = async (id, updatedName) => {
     try {
-      const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/category/edit-category/${id}`, {
+      const res = await fetch(`${apiURL}/api/category/edit-category/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -92,7 +94,7 @@ useEffect(() => {
 }, [])
 
   return (
-    <main className='w-[80%] bg-slate-50 fixed right-0 bottom-0 h-screen shadow-md overflow-y-auto'>
+    <main className='w-[85%] bg-slate-50 fixed right-0 bottom-0 h-screen shadow-md overflow-y-auto'>
       <AdminSearch />
     <form onSubmit={addCategory} method='POST' className='flex items-center justify-center gap-5 mt-28'>
         <input className='rounded-sm w-[640px] border border-slate-400' value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder='Add Categories' />

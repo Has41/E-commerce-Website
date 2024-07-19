@@ -14,10 +14,12 @@ const EditProfile = () => {
     })
 
     const navigate = useNavigate()
+
+    const apiURL = process.env.REACT_APP_API_URL
     
     const fetchData = async () => {
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`, {
+            const res = await fetch(`${apiURL}/api/users/me`, {
                 method: "GET",
                 credentials: "include"
             })
@@ -43,7 +45,7 @@ const EditProfile = () => {
     const updateProfile = async (e) => {
         e.preventDefault()
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`,{
+            const res = await fetch(`${apiURL}/api/users/me`,{
                 method: `PUT`,
                 headers: {
                     'Content-Type': 'application/json'
@@ -68,7 +70,7 @@ const EditProfile = () => {
             const formData = new FormData();
             formData.append('profilePhoto', photo);
     
-            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me/profilePic', {
+            const res = await fetch(`${apiURL}/api/users/me/profilePic`, {
                 method: 'PUT',
                 body: formData
             });

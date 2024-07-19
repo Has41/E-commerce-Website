@@ -4,12 +4,14 @@ import NavBar1 from '../components/NavBar1'
 import Footer2 from '../components/Footer2'
 import moment from 'moment'
 
+const apiURL = process.env.REACT_APP_API_URL
+
 const Order = () => {
     const [orders, setOrders] = useState([])
 
     const fetchOrders = async () => {
         try {
-            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/auth/orders', {
+            const res = await fetch(`${apiURL}/api/auth/orders`, {
                 method: "GET",
                 credentials: "include"
             })
@@ -29,6 +31,7 @@ const Order = () => {
     useEffect(() => {
         fetchOrders()
     }, [])
+    
   return (
     <>
     <NavBar1 />

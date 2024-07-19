@@ -8,9 +8,11 @@ const OrderPlace = () => {
     // const [changeStatus, setChangeStatus] = useState('')
     const [orders, setOrders] = useState([])
 
+    const apiURL = process.env.REACT_APP_API_URL
+
     const fetchOrders = async () => {
         try {
-            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/auth/get-orders', {
+            const res = await fetch(`${apiURL}/api/auth/get-orders`, {
                 method: "GET",
                 credentials: "include"
             })
@@ -29,7 +31,7 @@ const OrderPlace = () => {
     const handleChange = async (orderId, e) => {
         try {
             const { value } = e.target
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/update-orders/${orderId}`, {
+            const res = await fetch(`${apiURL}/api/auth/update-orders/${orderId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -50,7 +52,7 @@ const OrderPlace = () => {
         fetchOrders()
     }, [])
   return (
-    <main className='w-[80%] bg-slate-50 fixed right-0 rounded-md bottom-0 h-screen shadow-md overflow-y-auto'>
+    <main className='w-[85%] bg-slate-50 fixed right-0 rounded-md bottom-0 h-screen shadow-md overflow-y-auto'>
         <AdminSearch />
         {orders && orders.length > 0 ? (
                 <div className='bg-slate-50 w-[90%] mx-auto pt-14 shadow-sm mt-20'>

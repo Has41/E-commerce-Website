@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import AdminSidebar from "../components/AdminSidebar"
 import Dashboard from "../components/Dashboard"
 import AddProduct from "../components/AddProduct"
@@ -8,27 +8,7 @@ import ShowProduct from "../components/ShowProduct"
 import OrderPlace from "../components/OrderPlace"
 
 const AdminPanel = () => {
-    const [userData, setUserData] = useState(null)
-    const [isLoggedIn, setLoggedIn] = useState(false)
     const [selectedOption, setSelectedOption] = useState("Dashboard")
-
-    const checkLogin = async () => {
-        try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`, {
-                method: "GET",
-                credentials: "include"
-            })
-            if(res.ok) {
-                const data = await res.json()
-                setLoggedIn(data)
-                setUserData(data)
-            } else {
-                setLoggedIn(false)
-            }
-        } catch (err) {
-            console.error('Error fetching user info: ', err.message)
-        }
-    }
 
     const renderContent = () => {
         switch (selectedOption) {
@@ -46,10 +26,6 @@ const AdminPanel = () => {
                 return <Dashboard />
         }
     }
-
-    useEffect(() => {
-        checkLogin()
-    },[])
 
     return (
         <>

@@ -18,6 +18,8 @@ const AllProducts = () => {
   const [minValue, setMinValue] = useState(10)
   const [maxValue, setMaxValue] = useState(100)
 
+  const apiURL = process.env.REACT_APP_API_URL
+
   useEffect(() => {
     if (showSidebar) {
       document.body.style.overflow = "hidden"
@@ -37,7 +39,7 @@ const AllProducts = () => {
   const getProducts = async (latestData) => {
     try {
       setLoading(true)
-      const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/get-listed-product/${latestData.skip}/${latestData.limit}`, {
+      const res = await fetch(`${apiURL}/api/products/get-listed-product/${latestData.skip}/${latestData.limit}`, {
         method: 'GET',
         credentials: 'same-origin'
       });
@@ -92,7 +94,7 @@ const AllProducts = () => {
 
   const getCategory = async () => {
     try {
-        const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/get-category')
+        const res = await fetch(`${apiURL}/api/category/get-category`)
         if (res.ok) {
             const data = await res.json()
             setCategories(data)
@@ -125,7 +127,7 @@ const AllProducts = () => {
 
 const getProductCount = async () => {
   try {
-    const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/products/get-product-count')
+    const res = await fetch(`${apiURL}/api/products/get-product-count`)
 
     if (res.ok) {
       const data = await res.json()

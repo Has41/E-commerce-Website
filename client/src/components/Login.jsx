@@ -3,6 +3,7 @@ import NavBar1 from './NavBar1'
 import { Link } from 'react-router-dom'
 import Footer2 from './Footer2'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/AuthContext'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -10,6 +11,9 @@ const Login = () => {
   const [password, setPassword] = useState(``)
   const [errorMessage, setErrorMessage] = useState(null)
   const [loading, setLoading] = useState(false)
+  const { isLoggedIn, setIsLoggedIn, setRole } = useAuth()
+
+  const apiURL = process.env.REACT_APP_API_URL
 
   const login = async (e) => {
     e.preventDefault()
@@ -26,7 +30,7 @@ const Login = () => {
 
     try {
         setLoading(true)
-        const loginRes = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/login`, {
+        const loginRes = await fetch(`${apiURL}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,7 +42,7 @@ const Login = () => {
         if (loginRes.ok) {
             setErrorMessage(null)
             console.log('Login successful') 
-            const userRes = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`, {
+            const userRes = await fetch(`${apiURL}/api/users/me`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -47,8 +51,11 @@ const Login = () => {
             if (userRes.ok) {
                 setLoading(false)
                 const userData = await userRes.json()
-                console.log(userData)
+                setIsLoggedIn(true)
+                setRole(userData.role)
+                // console.log(userData)
                 const isAdmin = userData.role === 'admin'
+                // console.log(isAdmin)
                 isAdmin ? navigate('/adminPanel') : navigate('/')
              } else {
                 setLoading(false)

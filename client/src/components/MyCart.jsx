@@ -12,6 +12,9 @@ const MyCart = () => {
   const [stripe, setStripe] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  const apiURL = process.env.REACT_APP_API_URL
+  const stripeKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY
+
   const totalPrice = () => {
     try {
       let total = 0
@@ -27,7 +30,7 @@ const MyCart = () => {
 
   const getCartItems = async () => {
     try {
-        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/current`)
+        const res = await fetch(`${apiURL}/api/cart/current`)
         if (res.ok) {
             const data = await res.json()
             setCartItems(data)
@@ -41,7 +44,7 @@ const MyCart = () => {
 
 const checkLogin = async () => {
   try {
-      const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`, {
+      const res = await fetch(`${apiURL}/api/users/me`, {
         method: "GET",
         credentials: "include"
       })
@@ -59,7 +62,7 @@ const checkLogin = async () => {
 
 const removeCartItems = async (id) => {
   try {
-      const res = await fetch(`/api/cart/${id}`, {
+      const res = await fetch(`${apiURL}/api/cart/${id}`, {
           method: 'DELETE'
       })
       if (res.ok) {
@@ -80,7 +83,7 @@ const createPayment = async () => {
 
   try {
     setLoading(true)
-    const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/products/create-checkout/session', {
+    const res = await fetch(`${apiURL}/api/products/create-checkout/session`, {
       method: 'POST',
       credentials: "include",
       headers: {
@@ -114,7 +117,7 @@ const createPayment = async () => {
 
 useEffect(() => {
   const fetchStripe = async () => {
-    const stripeObj = await loadStripe('pk_test_51OhVpzF9GzcJmZ26D2GM7G2vCziktOzOVxWuoYiiebeYCUY2i17Ku4YhI6laSByzsFLrsQwJO0HPRwiGeuNRqgbH00IgizWlOC')
+    const stripeObj = await loadStripe(stripeKey)
     setStripe(stripeObj)
   }
 

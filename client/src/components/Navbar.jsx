@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/AuthContext'
 
 const Navbar = () => {
     const [mobileMenu, setMobileMenu] = useState(false)
@@ -11,7 +12,11 @@ const Navbar = () => {
     const [userData, setUserData] = useState(null)
     const [total, setTotal] = useState(0)
 
-    const profilePic = "https://e-commerce-website-server-eta.vercel.app/api/users/me/photo"
+    const { logout } = useAuth()
+
+    const apiURL = process.env.REACT_APP_API_URL
+
+    const profilePic = `${apiURL}/api/users/me/photo`
 
     const navigate = useNavigate()
 
@@ -57,7 +62,7 @@ const Navbar = () => {
 
     const getCartItems = async () => {
         try{
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/current`, {
+            const res = await fetch(`${apiURL}/api/cart/current`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -73,19 +78,19 @@ const Navbar = () => {
     }
     
     const totalItemsPrice = () => {
-        let itemsTotal = 0;
+        let itemsTotal = 0
     
         cartItems.forEach((elements) => {
-            itemsTotal += elements.price * elements.quantity;
-        });
+            itemsTotal += elements.price * elements.quantity
+        })
     
-        setTotal(itemsTotal);
-    };
+        setTotal(itemsTotal)
+    }
     
 
     const removeCartItems = async (id) => {
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/cart/${id}`, {
+            const res = await fetch(`${apiURL}/api/cart/${id}`, {
                 method: 'DELETE'
             })
             if (res.ok) {
@@ -102,7 +107,7 @@ const Navbar = () => {
 
     const checkLogin = async () => {
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/users/me`, {
+            const res = await fetch(`${apiURL}/api/users/me`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -121,20 +126,21 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/logout`, {
+            const res = await fetch(`${apiURL}/api/auth/logout`, {
                 method: 'POST',
                 credentials: 'include'
             })
             if(res.ok) {
                 setUserData(null)
                 setLoggedIn(false)
+                logout()
                 setUserDropdown(false)
                 navigate(`/login`)
             } else {
-                console.error(`Error!`);
+                console.error(`Error!`)
             }
         } catch (err) {
-            console.error(err.message);
+            console.error(err.message)
         }
     }
     

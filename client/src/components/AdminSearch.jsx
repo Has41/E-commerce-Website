@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
+import { useAuth } from '../hooks/AuthContext'
 
 const AdminSearch = () => {
   const [adminData, setAdminData] = useState(null)
   const [userDropdown, setUserDropdown] = useState(false)
   const navigate = useNavigate()
 
-  const profilePhoto = "https://e-commerce-website-server-eta.vercel.app/api/users/me/photo"
+  const { logout } = useAuth()
+
+  const apiURL = process.env.REACT_APP_API_URL
+
+  const profilePhoto = `${apiURL}/api/users/me/photo`
 
   const getAdminInfo = async () => {
     try {
-      const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/users/me', {
+      const res = await fetch(`${apiURL}/api/users/me`, {
         method: "GET",
         credentials: "include"
       })
@@ -28,12 +33,14 @@ const AdminSearch = () => {
 
   const handleLogout = async () => {
     try {
-        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/logout`, {
+        const res = await fetch(`${apiURL}/api/auth/logout`, {
             method: 'POST',
-            credentials: 'same-origin'
+            credentials: 'include'
         })
+        
         if(res.ok) {
           setAdminData(null)
+          logout()
           navigate(`/login`)
         } else {
             console.error(`Error!`)
@@ -51,7 +58,7 @@ const AdminSearch = () => {
   
 
   return (
-    <nav className='w-[80%] flex items-center justify-around mb-24 bg-white h-[70px] px-4 gap-x-10 fixed right-0 shadow-sm'>
+    <nav className='w-[85%] flex items-center justify-around mb-24 bg-white h-[70px] px-4 gap-x-10 fixed right-0 shadow-sm'>
       <div className='flex items-center relative ml-8'>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='absolute left-3 top-1/2 transform -translate-y-1/2' width="24" height="18" fill="none" stroke="#979797" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="11" cy="11" r="8" />

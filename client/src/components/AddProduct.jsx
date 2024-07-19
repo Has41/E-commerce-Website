@@ -11,9 +11,11 @@ const [price, setPrice] = useState('')
 const [category, setCategory] = useState('')
 const [quantity, setQuantity] = useState('')
 
+const apiURL = process.env.REACT_APP_API_URL
+
 const getCategory = async () => {
   try {
-      const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/get-category', {
+      const res = await fetch(`${apiURL}/api/category/get-category`, {
           method: 'GET',
           credentials: 'same-origin'
       })
@@ -42,7 +44,7 @@ const createProduct = async (e) => {
   console.log(category)
 
   try {
-    await fetch('https://e-commerce-website-server-eta.vercel.app/api/products/create-product', {
+    await fetch(`${apiURL}/api/products/create-product`, {
       method: 'POST',
       credentials: "include",
       body: formData,
@@ -58,7 +60,7 @@ useEffect(() => {
 }, [])
 
   return (
-    <main className='w-[80%] bg-slate-50 fixed right-0 bottom-0 h-screen overflow-y-auto'>
+    <main className='w-[85%] bg-slate-50 fixed right-0 bottom-0 h-screen overflow-y-auto'>
       <AdminSearch />
       <div className='mt-24 my-8 text-center'>
       <div className='bg-white max-w-[600px] p-[30px] rounded-sm py-8 pb-14 shadow-md mx-auto'>

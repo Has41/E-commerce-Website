@@ -7,11 +7,13 @@ const ForgotPassword = () => {
     const [message, setMessage] = useState(null)
     const [loading, setLoading] = useState(false)
 
+    const apiURL = process.env.REACT_APP_API_URL
+
     const forgotPassword = async (e) => {
         try {
             e.preventDefault()
             setLoading(true)
-            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/auth/forgot-password', {
+            const res = await fetch(`${apiURL}/api/auth/forgot-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

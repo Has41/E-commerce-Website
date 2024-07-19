@@ -149,6 +149,7 @@ const login = async (req, res, next) => {
                 secure: true,
                 expiresIn: '1d'
             }).json('Login Success!')
+            
         } catch (tokenError) {
             console.error('Token Signing Error:', tokenError.message)
             const err = errorHandler(500, 'Error signing token')

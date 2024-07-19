@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 const Section = () => {
   const [products, setProducts] = useState([])
 
+  const apiURL = process.env.REACT_APP_API_URL
+
+  const productPic = `${apiURL}/api/products/get-product-photo`
+
     const starRating = () => {
         const starIcons = []
 
@@ -17,7 +21,7 @@ const Section = () => {
 
     const getProducts = async () => {
       try {
-        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/get-product`)
+        const res = await fetch(`${apiURL}/api/products/get-product`)
     
         if (res.ok) {
           const data = await res.json()
@@ -55,7 +59,7 @@ const Section = () => {
     {randomProducts.map((product) => (
           <Link to={`/cartpage/${product._id}`} key={product._id} className='border border-slate-50 hover:shadow-2xl transition-all duration-1000 w-[300px] h-[520px] lg:h-[545px] rounded-sm sm:w-[350px] sm:h-[570px] lg:w-[300px]'>
             <div className='text-center flex items-center justify-center sm:w-[350px]'>
-              <img className='h-[400px] sm:h-[400px] rounded-sm sm:w-full lg:h-[400px] lg:w-[400px] w-full' src={`/api/products/get-product-photo/${product._id}`} alt='' />
+              <img className='h-[400px] sm:h-[400px] rounded-sm sm:w-full lg:h-[400px] lg:w-[400px] w-full' src={`${productPic}/${product._id}`} alt='Photo' />
             </div>
             <div className='sm:space-y-1'>
               <p className='text-center font-mont font-semibold mt-4 sm:text-lg'>{product.name}</p>

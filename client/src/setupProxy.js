@@ -2,7 +2,7 @@
 
 // module.exports = function (app) {
 //   app.use('/api', createProxyMiddleware({
-//       target: 'https://e-commerce-website-server-eta.vercel.app/',
+//       target: 'http://192.168.1.9:5000/',
 //       changeOrigin: true,
 //       logLevel: 'debug'
 //     }),

@@ -6,6 +6,8 @@ const Form = () => {
     const [comment, setComment] = useState('')
     const [loading, setLoading] = useState(false)
 
+    const apiURL = process.env.REACT_APP_API_URL
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -17,7 +19,7 @@ const Form = () => {
     
         try {
           setLoading(true)
-          const response = await fetch('https://e-commerce-website-server-eta.vercel.app/api/mail/send-mail', {
+          const response = await fetch(`${apiURL}/api/mail/send-mail`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

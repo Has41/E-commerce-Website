@@ -13,9 +13,11 @@ const ShowProduct = () => {
         quantity: '',
     })
 
+    const apiURL = process.env.REACT_APP_API_URL
+
     const getAllProducts = async () => {
         try {
-            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/products/get-product')
+            const res = await fetch(`${apiURL}/api/products/get-product`)
 
             if (res.ok) {
                 const data = await res.json()
@@ -30,7 +32,7 @@ const ShowProduct = () => {
         try {
             const editedProduct = products.find((item) => item._id === id);
             
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/update-product/${id}`, {
+            const res = await fetch(`${apiURL}/api/products/update-product/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +58,7 @@ const ShowProduct = () => {
 
     const removeProduct = async (id) => {
         try {
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/products/delete-product/${id}`, {
+            const res = await fetch(`${apiURL}/api/products/delete-product/${id}`, {
                 method: 'DELETE'
             })
             if (res.ok) {
@@ -73,7 +75,7 @@ const ShowProduct = () => {
     const handleChange = async (categoryId, e) => {
         try {
             const { value } = e.target
-            const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/category/edit-category/${categoryId}`, {
+            const res = await fetch(`${apiURL}/api/category/edit-category/${categoryId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -92,9 +94,9 @@ const ShowProduct = () => {
 
     const getCategory = async () => {
         try {
-            const res = await fetch('https://e-commerce-website-server-eta.vercel.app/api/category/get-category', {
+            const res = await fetch(`${apiURL}/api/category/get-category`, {
                 method: 'GET',
-                credentials: 'same-origin'
+                credentials: 'include'
             })
             if (res.ok) {
                 const data = await res.json()
@@ -116,7 +118,7 @@ const ShowProduct = () => {
     }, [])
 
   return (
-    <main className='w-[80%] bg-slate-50 fixed right-0 rounded-md bottom-0 h-screen shadow-md overflow-y-auto'>
+    <main className='w-[85%] bg-slate-50 fixed right-0 rounded-md bottom-0 h-screen shadow-md overflow-y-auto'>
         <AdminSearch />
         <div>
         <div className='bg-slate-50 w-[90%] mx-auto pt-14 shadow-sm mt-20 mb-12'>

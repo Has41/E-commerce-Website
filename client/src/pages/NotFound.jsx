@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar1 from '../components/NavBar1'
 import Footer2 from '../components/Footer2'
+import useAuth from '../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const NotFound = () => {
+  const { isLoggedIn, role } = useAuth()
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isLoggedIn && role === 'admin') navigate('/adminPanel')  
+  }, [role, isLoggedIn])
+
   return (
     <>
         <NavBar1 />

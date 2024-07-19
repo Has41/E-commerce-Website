@@ -15,6 +15,8 @@ const Register = () => {
   const [message, setMessage] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  const apiURL = process.env.REACT_APP_API_URL
+
   const register = async (e) => {
     e.preventDefault()
 
@@ -33,7 +35,7 @@ const Register = () => {
 
     try{
       setLoading(true)
-        const res = await fetch(`https://e-commerce-website-server-eta.vercel.app/api/auth/register`, {
+        const res = await fetch(`${apiURL}/api/auth/register`, {
             method: `POST`,
             body: formData
             })
