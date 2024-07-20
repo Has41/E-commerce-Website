@@ -238,9 +238,13 @@ const forgotPassword = async (req, res, next) => {
 }
 
 
-const logout = (req,res) => {
-    res.clearCookie(`accessToken`)
-    return res.status(200).json({ message: `Logout Success` })
+const logout = (req, res) => {
+    res.clearCookie('accessToken', {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None'
+    })
+    return res.status(200).json({ message: 'Logout Success' })
 }
 
 //Check everytime when we login if token is avaliable
