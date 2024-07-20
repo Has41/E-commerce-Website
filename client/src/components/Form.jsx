@@ -115,17 +115,17 @@ const Form = () => {
             <form onSubmit={handleSubmit} className='space-y-8 mt-8 max-w-[70%] mx-auto' action="#">
                 <div className='relative'>
                     <i className='bx bxs-user-pin text-xl text-amber-500 lg:text-3xl absolute top-3 left-3 hidden lg:block'></i>
-                    <input className='border border-slate-400 rounded-sm py-4 lg:pl-12 sm:pl-6 w-full text-sm lg:text-base lg:py-4 lg:w-full' value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder='Type Full Name Here!' />
+                    <input className='border focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none border-slate-400 rounded-sm py-4 lg:pl-12 sm:pl-6 w-full text-sm lg:text-base lg:py-4 lg:w-full' value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder='Type Full Name Here!' />
                 </div>
 
                 <div className='relative'>
                     <i className='bx bxs-envelope text-xl text-amber-500 lg:text-3xl absolute top-3 left-3 hidden lg:block'></i>
-                    <input className='border border-slate-400 rounded-sm py-4 lg:pl-12 sm:pl-6 w-full text-sm lg:text-base lg:py-4 lg:w-full' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='Type Your Email Here!' />
+                    <input className='border focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none border-slate-400 rounded-sm py-4 lg:pl-12 sm:pl-6 w-full text-sm lg:text-base lg:py-4 lg:w-full' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder='Type Your Email Here!' />
                 </div>
 
                 <div className='relative'>
                     <i className='bx bxs-comment-dots text-xl text-amber-500 lg:text-3xl absolute top-3 left-3 hidden lg:block'></i>
-                    <input className='border border-slate-400 rounded-sm py-4 pb-24 lg:pl-12 sm:pl-6 w-full text-sm lg:text-base lg:pt-4 lg:pb-40 lg:w-full' value={comment} onChange={(e) => setComment(e.target.value)} type="text" placeholder='Type Comment Here!' />
+                    <input className='border focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none border-slate-400 rounded-sm py-4 pb-24 lg:pl-12 sm:pl-6 w-full text-sm lg:text-base lg:pt-4 lg:pb-40 lg:w-full' value={comment} onChange={(e) => setComment(e.target.value)} type="text" placeholder='Type Comment Here!' />
                 </div>
 
                 <button type='submit' className='w-full sm:w-full lg:w-full py-3 text-lg lg:text-xl lg:tracking-wider lg:font-medium font-medium bg-amber-500 hover:bg-amber-600 transition-all duration-500 text-white rounded-sm font-poppins'>

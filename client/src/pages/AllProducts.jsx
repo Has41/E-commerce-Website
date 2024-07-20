@@ -276,7 +276,7 @@ const loadMore = async () => {
       <div className='mt-8 lg:mt-24 grid place-items-center justify-center lg:grid-cols-3 gap-10 sm:gap-20 mb-4'>
           <>
           {filteredProducts.map((product) => (
-            <Link key={product._id} to={`/cartPage/${product._id}`} className='border border-slate-50 hover:shadow-2xl mx-auto transition-all duration-1000 w-[300px] h-[520px] lg:h-[450px] rounded-sm sm:w-[350px] sm:h-[630px] lg:w-[250px]'>
+            <Link key={product._id} to={`/cartPage/${product._id}`} className='border border-slate-50 hover:shadow-2xl mx-auto transition-all duration-1000 w-[300px] h-[540px] lg:h-[450px] rounded-sm sm:w-[350px] sm:h-[630px] lg:w-[250px]'>
             <div className='text-center flex items-center justify-center sm:w-[350px] lg:w-[250px] mx-auto'>
               <img className='h-[400px] sm:h-[450px] rounded-sm sm:w-[350px] lg:h-[300px] lg:w-full w-full' src={`${productPic}/${product._id}`} alt={product.name} />
             </div>

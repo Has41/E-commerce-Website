@@ -160,20 +160,20 @@ const CartPage = () => {
             <div className='lg:w-[70%]'>
             <div className='text-center mt-4 lg:text-justify'>
                <p className='font-poppins font-semibold text-xl uppercase lg:text-2xl lg:font-bold'>{product ? product.name : 'Product Title'}</p>
-               <p className='font-mont font-semibold text-slate-600 text-lg mt-2 lg:text-xl lg:mt-5'>{product ? `$${product.price.toFixed(2)}` : '$0.00'}</p>
-               <p className='font-mont font-normal sm:px-14 text-slate-500 text-sm px-8 mt-3 text-pretty lg:font-semibold lg:text-slate-500 lg:-ml-4 lg:mt-6'>{product && product.description}</p>
+               <p className='font-mont font-semibold text-slate-600 text-base mt-2 lg:text-xl lg:mt-5'>{product ? `$${product.price.toFixed(2)}` : '$0.00'}</p>
+               <p className='font-mont font-normal sm:px-14 text-slate-500 text-sm px-8 mt-3 text-justify lg:font-semibold lg:text-slate-500 lg:-ml-4 lg:mt-6'>{product && product.description}</p>
             </div>
             <div className='lg:flex lg:items-center lg:justify-center mt-8 lg:mt-16 lg:space-x-64 lg:mr-5'>
 
             {/* Counter */}
             <div className='flex items-center justify-center'>
               <button onClick={increaseQuantity} className='border border-slate-400 px-4 py-2 rounded-l-sm lg:text-2xl transition-all duration-500 hover:bg-black/80 hover:text-white focus:outline-none'>+</button>
-                <div className='border-y-[1px] border-slate-400 px-5 py-[10px] lg:text-lg'>{quantity}</div>
+                <div className='border-y-[1px] border-slate-400 px-5 py-2 lg:py-[10px] lg:text-lg'>{quantity}</div>
               <button onClick={decreaseQuantity} className='border border-slate-400 px-4 py-2 rounded-r-sm lg:text-2xl transition-all duration-500 hover:bg-black/80 hover:text-white focus:outline-none'>-</button>
             </div>
 
             <div className='text-center mt-6 mb-4 lg:mt-0 lg:mb-0'>
-                <button onClick={addToCart} className='px-4 py-3 uppercase lg:px-5 lg:py-4 lg:uppercase font-semibold border-2 border-black font-mont rounded-sm hover:bg-black/80 hover:text-white transition-all duration-500'>
+                <button onClick={addToCart} className='px-4 py-3 uppercase text-sm lg:text-base lg:px-5 lg:py-4 lg:uppercase font-semibold border-2 border-black font-mont rounded-sm hover:bg-black/80 hover:text-white transition-all duration-500'>
                 {loading ? 
                 <>
                     <svg aria-hidden="true" className="inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-white" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -209,7 +209,7 @@ const CartPage = () => {
 
             <div className='mt-8 sm:mt-16 lg:mt-24 grid items-center justify-center lg:grid-cols-3 gap-6 sm:gap-20 lg:gap-4 mb-4'>
                 {relatedProducts.map((product) => (
-                     <Link to={`/cartpage/${product._id}`} key={product._id} className='border border-slate-50 hover:shadow-2xl transition-all duration-1000 w-[300px] h-[520px] lg:h-[455px] rounded-sm mx-auto sm:w-[350px] sm:h-[570px] lg:w-[250px]'>
+                     <Link to={`/cartpage/${product._id}`} key={product._id} className='border border-slate-50 hover:shadow-2xl transition-all duration-1000 w-[300px] h-[550px] lg:h-[455px] rounded-sm mx-auto sm:w-[350px] sm:h-[570px] lg:w-[250px]'>
                         <div className='text-center flex items-center justify-center sm:w-[350px]'>
                           <img className='h-[400px] sm:h-[400px] rounded-sm sm:w-full mx-auto lg:h-[300px] lg:w-[250px] w-full' src={`${productPic}/${product._id}`} alt={product?.name} />
                         </div>
