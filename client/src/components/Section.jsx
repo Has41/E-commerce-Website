@@ -57,7 +57,7 @@ const Section = () => {
 
     <div className='mt-8 sm:mt-16 lg:mt-24 grid items-center justify-center lg:grid-cols-3 gap-6 sm:gap-20 lg:gap-4 mb-4'>
     {randomProducts.map((product) => (
-          <Link to={`/cartpage/${product._id}`} key={product._id} className='border border-slate-50 hover:shadow-2xl transition-all duration-1000 w-[300px] h-[520px] lg:h-[550px] mx-auto rounded-sm sm:w-[350px] sm:h-[570px] lg:w-[300px]'>
+          <Link to={`/cartpage/${product._id}`} key={product._id} className='border border-slate-50 hover:shadow-2xl transition-all duration-1000 w-[300px] h-[550px] lg:h-[550px] mx-auto rounded-sm sm:w-[350px] sm:h-[570px] lg:w-[300px]'>
             <div className='text-center flex items-center justify-center sm:w-[350px] lg:w-[300px] mx-auto'>
               <img className='h-[400px] sm:h-[400px] rounded-sm sm:w-full lg:h-[400px] lg:w-full w-full' src={`${productPic}/${product._id}`} alt='Photo' />
             </div>
