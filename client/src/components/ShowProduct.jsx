@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react'
-import AdminPanel from '../pages/AdminPanel'
 import AdminSearch from './AdminSearch'
 
 const ShowProduct = () => {
@@ -14,6 +13,8 @@ const ShowProduct = () => {
     })
 
     const apiURL = process.env.REACT_APP_API_URL
+
+    const productPic = `${apiURL}/api/products/get-product-photo`
 
     const getAllProducts = async () => {
         try {
@@ -30,7 +31,7 @@ const ShowProduct = () => {
 
     const handleSaveEdit = async (id) => {
         try {
-            const editedProduct = products.find((item) => item._id === id);
+            const editedProduct = products.find((item) => item._id === id)
             
             const res = await fetch(`${apiURL}/api/products/update-product/${id}`, {
                 method: 'PUT',
@@ -38,37 +39,38 @@ const ShowProduct = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(editedProduct),
-            });
+            })
 
             if (res.ok) {
-                getAllProducts();
-                setEditable(null); // Disable editing after saving
+                getAllProducts()
+                setEditable(null) // Disable editing after saving
                 setEditedProduct({
                     name: '',
                     price: '',
                     quantity: '',
                 });
             } else {
-                console.error('Error updating product!');
+                console.error('Error updating product!')
             }
         } catch (err) {
-            console.error(err);
+            console.error(err)
         }
     }
 
     const removeProduct = async (id) => {
         try {
             const res = await fetch(`${apiURL}/api/products/delete-product/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                credentials: "include"
             })
             if (res.ok) {
-                getAllProducts();
-                setProducts(prev => prev.filter(item => item._id !== id));
+                getAllProducts()
+                setProducts(prev => prev.filter(item => item._id !== id))
             } else {
                 console.error('Error removing category!')
             }
         } catch (err) {
-            console.error(err);
+            console.error(err)
         }
     }
 
@@ -88,7 +90,7 @@ const ShowProduct = () => {
                 setEditable(null)
             }
         } catch (err) {
-            console.error(err);
+            console.error(err)
         }
     }
 
@@ -120,10 +122,10 @@ const ShowProduct = () => {
   return (
     <main className='w-[85%] bg-slate-50 fixed right-0 rounded-md bottom-0 h-screen shadow-md overflow-y-auto'>
         <AdminSearch />
-        <div>
-        <div className='bg-slate-50 w-[90%] mx-auto pt-14 shadow-sm mt-20 mb-12'>
-                <table className="w-[80%] mx-auto text-sm text-left text-gray-500 shadow-lg">
-                <thead className="text-base text-white uppercase bg-black/80">
+        <div className='mt-[10%]'>
+        <div className='bg-slate-50 mx-auto mb-12'>
+                <table className="w-[80%] mx-auto text-left text-gray-500 shadow-lg">
+                <thead className="text-sm text-white uppercase bg-black/80">
                 <tr>
                     <th scope="col" className="px-6 py-3">
                         #
@@ -148,12 +150,12 @@ const ShowProduct = () => {
                     </th>
                 </tr>
                         {products?.map((items, index) => {
-                              return  <tr key={index} className="bg-white border hover:bg-gray-50 text-base">
+                              return  <tr key={index} className="bg-white border hover:bg-gray-50 text-sm">
                                     <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                         {index+1}
                                     </td>
                                     <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
-                                        <img width={'75px'} height={'90px'} src={`/api/products/get-product-photo/${items._id}`} alt="" />
+                                        <img width={'75px'} height={'90px'} src={`${productPic}/${items._id}`} alt="" />
                                     </td>
                                     <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
                                     {editable === items._id ? (
@@ -208,15 +210,15 @@ const ShowProduct = () => {
                                             handleSaveEdit(items._id);
                                             setEditable(null); // Reset the editable state after saving
                                         }} className='font-medium text-black/80 hover:text-blue-600 duration-500 transition-all mr-5'>
-                                            <i className='bx bx-check text-[28px]'></i>
+                                            <i className='bx bx-check text-2xl'></i>
                                         </button>
                                     ) : (
                                         <button onClick={() => setEditable(items._id)} className='font-medium text-black/80 hover:text-green-600 duration-500 transition-all mr-5'>
-                                            <i className='bx bxs-edit-alt text-[22px]' ></i>
+                                            <i className='bx bxs-edit-alt text-lg' ></i>
                                         </button>
                                     )}
                                     <button onClick={() => removeProduct(items._id)} className='font-medium text-black/80 hover:text-red-600 duration-500 transition-all'>
-                                        <i className='bx bxs-trash text-[22px]'></i>
+                                        <i className='bx bxs-trash text-lg'></i>
                                     </button>
                                     </td>
                                 </tr>

@@ -30,7 +30,7 @@ const Footer2 = () => {
            <p className='text-lg font-semibold mt-4 md:mt-0'>Latest Updates</p>
            <p className='text-slate-500 lg:text-base text-sm mt-2'>Be the first to know!</p>
            <div className='flex flex-col items-center justify-center mt-3 md:flex-row'>
-             <input className='bg-slate-50 md:bg-slate-50 border border-slate-200 px-4 py-2 md:py-3 rounded-sm w-[271px] md:w-[250px] focus:border-black transition-all duration-500 md:mr-4' type="text" placeholder='Your email here!' />
+             <input className='bg-slate-50 focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none md:bg-slate-50 border border-slate-200 px-4 py-2 md:py-3 rounded-sm w-[271px] md:w-[250px] focus:border-black transition-all duration-500 md:mr-4' type="text" placeholder='Your email here!' />
              <button className='px-24 md:px-4 py-2 border-2 border-black rounded-sm mt-4 hover:bg-black hover:text-white transition-all duration-700 md:mb-4'>Subscribe</button>
            </div>
        </div>

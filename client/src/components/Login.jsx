@@ -89,8 +89,8 @@ const Login = () => {
             <form onSubmit={login} method="POST">
                 <div className='sm:w-[400px] w-[310px] lg:w-[85%] lg:mx-auto mx-auto sm:mx-auto'>
                 <div className='space-y-5 mt-4 sm:flex sm:flex-col lg:flex lg:flex-col lg:items-center lg:justify-center'>
-                  <input value={email} onChange={(e) => setEmail(e.target.value)} className='py-2 lg:py-3 rounded-sm border lg:text-base text-sm border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="email" placeholder='Enter your email' />
-                  <input value={password} onChange={(e) => setPassword(e.target.value)} className='py-2 lg:py-3 rounded-sm lg:text-base text-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="password" placeholder='Enter your password' />
+                  <input value={email} onChange={(e) => setEmail(e.target.value)} className='py-2 focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none" lg:py-3 rounded-sm border lg:text-base text-sm border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="email" placeholder='Enter your email' />
+                  <input value={password} onChange={(e) => setPassword(e.target.value)} className='py-2 focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none" lg:py-3 rounded-sm lg:text-base text-sm border border-slate-300 w-full h-[40px] lg:w-full sm:w-full sm:h-[50px]' type="password" placeholder='Enter your password' />
                 </div>
                 <div className='flex items-center justify-center lg:gap-x-32 gap-x-14 space-x-1 mt-4'>
                     <div className='flex items-center justify-center gap-x-1'>

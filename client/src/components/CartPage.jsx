@@ -18,6 +18,7 @@ const CartPage = () => {
     const navigate = useNavigate()
 
     const apiURL = process.env.REACT_APP_API_URL
+    const productPic = `${apiURL}/api/products/get-product-photo`
 
     const fetchSingleProduct = async () => {
       try {
@@ -91,7 +92,7 @@ const CartPage = () => {
           setRelatedProducts(data)
         }
       } catch (err) {
-        console.error(err);
+        console.error(err)
       }
     }
 
@@ -153,26 +154,26 @@ const CartPage = () => {
         <NavBar1 />
         <section className='bg-slate-50/40 pt-8 pb-12'>
             <section className='lg:flex lg:max-w-full lg:w-full lg:gap-x-8'>
-            <div className='flex items-center justify-center w-[82%] mx-auto lg:w-[500px] lg:ml-8'>
-                <img className='h-[400px] sm:h-[550px] md:h-[780px] rounded-sm lg:h-[650px] lg:w-full w-full' src={product ? photo : ''} alt="" />
+            <div className='flex items-center justify-center w-[82%] mx-auto lg:w-[450px] lg:ml-8'>
+                <img className='h-[400px] sm:h-[550px] md:h-[780px] rounded-sm lg:h-[550px] lg:w-full w-full' src={product ? photo : ''} alt={product?.name} />
             </div>
             <div className='lg:w-[70%]'>
             <div className='text-center mt-4 lg:text-justify'>
-               <p className='font-poppins font-semibold text-xl uppercase lg:text-3xl lg:font-bold'>{product ? product.name : 'Product Title'}</p>
-               <p className='font-mont font-semibold text-slate-600 text-lg mt-2 lg:text-2xl lg:mt-5'>{product ? `$${product.price.toFixed(2)}` : '$0.00'}</p>
-               <p className='font-mont font-normal sm:px-14 text-slate-500 text-sm px-8 mt-3 text-justify lg:text-base lg:font-semibold lg:text-slate-500 lg:-ml-4 lg:mt-6'>{product && product.description}</p>
+               <p className='font-poppins font-semibold text-xl uppercase lg:text-2xl lg:font-bold'>{product ? product.name : 'Product Title'}</p>
+               <p className='font-mont font-semibold text-slate-600 text-lg mt-2 lg:text-xl lg:mt-5'>{product ? `$${product.price.toFixed(2)}` : '$0.00'}</p>
+               <p className='font-mont font-normal sm:px-14 text-slate-500 text-sm px-8 mt-3 text-pretty lg:font-semibold lg:text-slate-500 lg:-ml-4 lg:mt-6'>{product && product.description}</p>
             </div>
             <div className='lg:flex lg:items-center lg:justify-center mt-8 lg:mt-16 lg:space-x-64 lg:mr-5'>
 
             {/* Counter */}
             <div className='flex items-center justify-center'>
-              <button onClick={increaseQuantity} className='border border-slate-400 px-4 py-2 lg:py-3 lg:px-5 rounded-l-sm lg:text-2xl transition-all duration-500 hover:bg-black/80 hover:text-white focus:outline-none'>+</button>
-                <div className='border-y-[1px] border-slate-400 px-6 py-2 lg:py-[14px] lg:px-7 lg:text-lg'>{quantity}</div>
-              <button onClick={decreaseQuantity} className='border border-slate-400 px-4 py-2 lg:py-3 lg:px-5 rounded-r-sm lg:text-2xl transition-all duration-500 hover:bg-black/80 hover:text-white focus:outline-none'>-</button>
+              <button onClick={increaseQuantity} className='border border-slate-400 px-4 py-2 rounded-l-sm lg:text-2xl transition-all duration-500 hover:bg-black/80 hover:text-white focus:outline-none'>+</button>
+                <div className='border-y-[1px] border-slate-400 px-5 py-[10px] lg:text-lg'>{quantity}</div>
+              <button onClick={decreaseQuantity} className='border border-slate-400 px-4 py-2 rounded-r-sm lg:text-2xl transition-all duration-500 hover:bg-black/80 hover:text-white focus:outline-none'>-</button>
             </div>
 
             <div className='text-center mt-6 mb-4 lg:mt-0 lg:mb-0'>
-                <button onClick={addToCart} className='px-6 py-3 text-base uppercase lg:px-5 lg:py-4 lg:text-base lg:uppercase font-semibold border-2 border-black font-mont rounded-sm hover:bg-black hover:text-white transition-all duration-500'>
+                <button onClick={addToCart} className='px-4 py-3 uppercase lg:px-5 lg:py-4 lg:uppercase font-semibold border-2 border-black font-mont rounded-sm hover:bg-black/80 hover:text-white transition-all duration-500'>
                 {loading ? 
                 <>
                     <svg aria-hidden="true" className="inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-white" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,11 +188,11 @@ const CartPage = () => {
 
 
             <div className='mt-8 ml-8 lg:ml-0 lg:mt-16'>
-                <p className='font-mont font-semibold text-base sm:text-lg lg:text-xl'>Free shipping on orders over 50$!</p>
+                <p className='font-mont font-semibold text-base sm:text-lg'>Free shipping on orders over 50$!</p>
                 <ul className='list-disc mt-2 ml-6 sm:ml-8 lg:ml-8'>
-                    <li className='font-mont font-medium text-slate-600 text-sm text-justify sm:text-base lg:text-lg'>No-Risk Money Back Guarantee!</li>
-                    <li className='font-mont font-medium text-slate-600 text-sm text-justify sm:text-base lg:text-lg'>Secure Payment!</li>
-                    <li className='font-mont font-medium text-slate-600 text-sm text-justify sm:text-base lg:text-lg'>No Hassle Refunds!</li>
+                    <li className='font-mont font-medium text-slate-600 text-sm text-justify pb-1'>No-Risk Money Back Guarantee!</li>
+                    <li className='font-mont font-medium text-slate-600 text-sm text-justify pb-1'>Secure Payment!</li>
+                    <li className='font-mont font-medium text-slate-600 text-sm text-justify pb-1'>No Hassle Refunds!</li>
                 </ul>
             </div>
             <div className='text-justify mt-4 ml-8 lg:hidden sm:mt-8'>
@@ -206,16 +207,16 @@ const CartPage = () => {
                 <p className='font-poppins font-semibold uppercase text-lg sm:text-xl tracking-wide lg:text-2xl'>Related Products</p>
             </div>
 
-            <div className='mt-8 sm:mt-16 lg:mt-24 grid items-center justify-center lg:grid-cols-3 gap-6 sm:gap-20 lg:gap-4 lg:ml-20 mb-4'>
+            <div className='mt-8 sm:mt-16 lg:mt-24 grid items-center justify-center lg:grid-cols-3 gap-6 sm:gap-20 lg:gap-4 mb-4'>
                 {relatedProducts.map((product) => (
-                     <Link to={`/cartpage/${product._id}`} key={product._id} className='border border-slate-50 hover:shadow-2xl transition-all duration-1000 w-[300px] h-[520px] lg:h-[545px] rounded-sm sm:w-[350px] sm:h-[570px] lg:w-[300px]'>
+                     <Link to={`/cartpage/${product._id}`} key={product._id} className='border border-slate-50 hover:shadow-2xl transition-all duration-1000 w-[300px] h-[520px] lg:h-[455px] rounded-sm mx-auto sm:w-[350px] sm:h-[570px] lg:w-[250px]'>
                         <div className='text-center flex items-center justify-center sm:w-[350px]'>
-                          <img className='h-[400px] sm:h-[400px] rounded-sm sm:w-full lg:h-[400px] lg:w-[400px] w-full' src={`/api/products/get-product-photo/${product._id}`} alt='' />
+                          <img className='h-[400px] sm:h-[400px] rounded-sm sm:w-full mx-auto lg:h-[300px] lg:w-[250px] w-full' src={`${productPic}/${product._id}`} alt={product?.name} />
                         </div>
-                        <div className='sm:space-y-1'>
+                        <div className='sm:space-y-1 space-y-2'>
                           <p className='text-center font-mont font-semibold mt-4 sm:text-lg'>{product.name}</p>
-                          <p className='text-center font-mont font-normal text-slate-500 sm:text-lg'>{product.category.name}</p>
-                          <p className='text-center font-mont font-medium sm:text-lg sm:font-semibold'>${product.price}</p>
+                          <p className='text-center font-mont font-normal text-sm text-slate-500 sm:text-lg'>{product.category.name}</p>
+                          <p className='text-center font-mont font-medium text-sm sm:text-lg sm:font-semibold'>${product.price}</p>
                           {starRating()}
                        </div>
                       </Link>
@@ -226,7 +227,7 @@ const CartPage = () => {
         <Footer2 />
 
         {showPopup && (
-          <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
+          <div className='fixed inset-0 flex shadow-md items-center justify-center bg-black bg-opacity-50 z-50'>
             <div className='bg-white p-6 lg:w-[30%] w-[80%] rounded-md text-center relative'>
                 <div onClick={handlePopupClose} className='lg:absolute lg:top-4 lg:right-3 absolute top-4 right-5 cursor-pointer'>
                     <i className='bx bx-x text-3xl'></i>
@@ -234,9 +235,9 @@ const CartPage = () => {
               <div className='text-center'>
                 <i className='bx bxs-error-alt lg:text-[80px] text-[60px] text-amber-500'></i>
               </div>
-              <div className='lg:text-2xl text-lg pt-6 text-center font-bold uppercase'>Please Log In First!</div>
+              <div className='lg:text-2xl text-lg pt-6 text-center font-mont font-bold'>Please Log In First!</div>
               <div className='text-center mt-8'>
-                <button className='px-5 py-2 border-2 uppercase border-black/80 font-bold lg:text-lg text-base rounded-sm hover:bg-black/80 hover:text-white transition-all duration-300 font-poppins'>
+                <button className='px-5 py-2 border-2 uppercase border-black/80 font-bold lg:text-lg text-base rounded-sm hover:bg-black/80 hover:text-white transition-all duration-300 font-mont'>
                   <Link to={'/login'}>Login</Link>
                 </button>
               </div>

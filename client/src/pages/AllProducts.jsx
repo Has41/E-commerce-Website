@@ -20,6 +20,8 @@ const AllProducts = () => {
 
   const apiURL = process.env.REACT_APP_API_URL
 
+  const productPic = `${apiURL}/api/products/get-product-photo`
+
   useEffect(() => {
     if (showSidebar) {
       document.body.style.overflow = "hidden"
@@ -271,16 +273,16 @@ const loadMore = async () => {
     </div>
 
     ) : (
-      <div data-aos="fade-up" data-aos-duration="1000" className='mt-8 lg:mt-24 grid items-center justify-center lg:grid-cols-3 gap-10 sm:gap-20 lg:gap-x-8 lg:gap-y-12 lg:ml-14 mb-4'>
+      <div className='mt-8 lg:mt-24 grid place-items-center justify-center lg:grid-cols-3 gap-10 sm:gap-20 mb-4'>
           <>
           {filteredProducts.map((product) => (
-            <Link key={product._id} to={`/cartPage/${product._id}`} className='border border-slate-50 hover:shadow-2xl transition-all duration-1000 w-[300px] h-[520px] lg:h-[545px] rounded-sm sm:w-[350px] sm:h-[630px] lg:w-[320px]'>
-            <div className='text-center flex items-center justify-center sm:w-[350px] lg:w-[320px]'>
-              <img className='h-[400px] sm:h-[450px] rounded-sm sm:w-[350px] lg:h-[400px] w-full' src={`/api/products/get-product-photo/${product._id}`} alt={product.name} />
+            <Link key={product._id} to={`/cartPage/${product._id}`} className='border border-slate-50 hover:shadow-2xl mx-auto transition-all duration-1000 w-[300px] h-[520px] lg:h-[450px] rounded-sm sm:w-[350px] sm:h-[630px] lg:w-[250px]'>
+            <div className='text-center flex items-center justify-center sm:w-[350px] lg:w-[250px] mx-auto'>
+              <img className='h-[400px] sm:h-[450px] rounded-sm sm:w-[350px] lg:h-[300px] lg:w-full w-full' src={`${productPic}/${product._id}`} alt={product.name} />
             </div>
-            <p className='text-center font-mont font-semibold mt-4 sm:text-lg'>{product.name}</p>
-            <p className='text-center font-mont font-normal text-slate-500 sm:text-lg'>{product.category.name}</p>
-            <p className='text-center font-mont font-medium sm:text-lg sm:font-semibold'>${product.price}.00</p>
+            <p className='text-center font-mont font-semibold mt-4'>{product.name}</p>
+            <p className='text-center font-mont font-normal text-slate-500'>{product.category.name}</p>
+            <p className='text-center font-mont font-medium sm:font-semibold'>${product.price}.00</p>
             {starRating()}
             </Link>
           ))}

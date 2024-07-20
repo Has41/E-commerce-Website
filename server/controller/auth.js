@@ -75,14 +75,14 @@ const verifyToken = async (req, res, next) => {
         }
 
         // Update user verification status
-        user.verification = true;
-        await user.save();
+        user.verification = true
+        await user.save()
 
         // Delete the token
         await Token.findOneAndDelete({ _id: token._id })
 
         // Send success response
-        return res.status(200).send({ message: "Email Verified Successfully!" });
+        return res.status(200).send({ message: "Email Verified Successfully!" })
     } catch (err) {
         console.error('Verification Error:', err.message, err.stack)
         const unexpectedErr = errorHandler(500, 'An unexpected error occurred')
@@ -116,14 +116,14 @@ const login = async (req, res, next) => {
         }
 
         if (user.verification) {
-            let token = await Token.findOne({ userId: user._id });
+            let token = await Token.findOne({ userId: user._id })
             if (!token) {
                 await new Token({
                     userId: user._id,
                     token: crypto.randomBytes(32).toString("hex")
                 }).save()
         
-                const url = `${process.env.BASE_URL}users/${user._id}/verify/${token.token}`;
+                const url = `${process.env.BASE_URL}users/${user._id}/verify/${token.token}`
                 try {
                     await sendMail(user.email, "Verify Your Email", url)
                     return res.status(400).json({ message: "An Email Has been sent to your account!" })
@@ -165,34 +165,34 @@ const login = async (req, res, next) => {
 
 const forgotPassword = async (req, res, next) => {
     try {
-      const { email } = req.body;
+      const { email } = req.body
   
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email })
   
       if (!user) {
         return res.status(404).send({ message: "User Not Found!" })
       }
   
-      let token = await Token.findOne({ userId: user._id });
+      let token = await Token.findOne({ userId: user._id })
   
       if (!token) {
         // If no token exists, create a new one
         token = await new Token({
           userId: user._id,
           token: crypto.randomBytes(32).toString("hex")
-        }).save();
+        }).save()
       } else {
         // If a token exists, update the existing token
-        token.token = crypto.randomBytes(32).toString("hex");
-        await token.save();
+        token.token = crypto.randomBytes(32).toString("hex")
+        await token.save()
       }
   
-      const url = `${process.env.BASE_URL}users/${user._id}/reset-password/${token.token}`;
-      await sendMail(user.email, "Reset Your Password", url);
+      const url = `${process.env.BASE_URL}users/${user._id}/reset-password/${token.token}`
+      await sendMail(user.email, "Reset Your Password", url)
   
-      res.status(200).send("Verification email sent Successfully!");
+      res.status(200).send("Verification email sent Successfully!")
     } catch (err) {
-      return next(err);
+      return next(err)
     }
   }
   
@@ -221,7 +221,7 @@ const forgotPassword = async (req, res, next) => {
 
         // Hash the new password
         const newPassword = req.body.newPassword
-        const salt = await bcryptjs.genSalt(10);
+        const salt = await bcryptjs.genSalt(10)
         const hashedPass = await bcryptjs.hash(newPassword, salt)
 
         if(hashedPass) {
@@ -238,13 +238,14 @@ const forgotPassword = async (req, res, next) => {
 }
 
 
-const logout = (req, res) => {
+const logout = (req,res) => {
+    // res.clearCookie(`accessToken`)
     res.clearCookie('accessToken', {
         httpOnly: true,
         secure: true,
         sameSite: 'None'
     })
-    return res.status(200).json({ message: 'Logout Success' })
+    return res.status(200).json({ message: `Logout Success` })
 }
 
 //Check everytime when we login if token is avaliable

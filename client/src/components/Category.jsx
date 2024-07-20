@@ -22,7 +22,7 @@ const Category = () => {
         }
 
       try {
-          await fetch(`${apiURL}/api/category/create-category`, {
+          const res = await fetch(`${apiURL}/api/category/create-category`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -30,6 +30,11 @@ const Category = () => {
             body: JSON.stringify({ name: name }),
             credentials: "include"
         })
+
+        if (res.ok) {
+          setName('')
+          getCategory()
+        }
 
     } catch (err) {
         console.error(err)
@@ -97,7 +102,7 @@ useEffect(() => {
     <main className='w-[85%] bg-slate-50 fixed right-0 bottom-0 h-screen shadow-md overflow-y-auto'>
       <AdminSearch />
     <form onSubmit={addCategory} method='POST' className='flex items-center justify-center gap-5 mt-28'>
-        <input className='rounded-sm w-[640px] border border-slate-400' value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder='Add Categories' />
+        <input className='rounded-sm focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none" w-[640px] border border-slate-400' value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder='Add Categories' />
         <button className='text-white bg-black/85 border border-black/80 px-4 py-2 uppercase font-semibold rounded-sm hover:bg-white hover:text-black duration-500 transition-all'>Add Category</button>
     </form>  
 

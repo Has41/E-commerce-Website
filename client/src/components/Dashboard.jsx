@@ -361,7 +361,7 @@ const Dashboard = () => {
           <Chart series={chart.series} options={chart.options} width={350} height={600} type='donut' />
         </div>
 
-        <div className='mt-14 ml-8 bg-white w-[50%] h-[38%] pt-2 shadow-md mb-8'>
+        <div className='mt-14 ml-8 bg-white w-[50%] h-[37%] shadow-md mb-8'>
           <div className='px-5 pt-3 pb-2 bg-black/80 text-white border-b flex justify-between'>
             <div className='font-semibold'>TODO List</div>
             <div>
