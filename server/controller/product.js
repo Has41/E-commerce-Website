@@ -6,7 +6,7 @@ import fs from 'fs'
 import mongoose from "mongoose"
 import stripe from "stripe"
 
-const stripeSecretKey = "sk_test_51OhVpzF9GzcJmZ26i0Ncm9CTzSki6bs0bac6Up5iSfwVSD9oPQSDq1cgTXSQ6UKJbqBBjX6qaJrhSEH9xDtZXOdT00s18Qp4MR"
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 
 const stripeInstance = stripe(stripeSecretKey)
 
@@ -165,8 +165,8 @@ const createPayment = async (req, res, next) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: "payment",
-            success_url: "http://localhost:3000/success",
-            cancel_url: "http://localhost:3000/cancel",
+            success_url: `${process.env.BASE_URL}/success`,
+            cancel_url: `${process.env.BASE_URL}/cancel`,
         });
 
 
