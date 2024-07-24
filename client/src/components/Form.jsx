@@ -59,22 +59,22 @@ const Form = () => {
         <div className='max-w-full lg:max-w-[95%] lg:mx-auto flex flex-col items-center justify-center mt-16 lg:flex lg:flex-row lg:items-center lg:justify-center lg:space-x-7'>
             <div className='bg-white mb-4 w-[80%] text-center py-8 space-y-5 rounded-md shadow hover:shadow-xl transition-all duration-700 lg:w-[28%]'>
                 <p className='font-poppins font-semibold text-lg lg:text-xl lg:tracking-wider'>Sales</p>
-                <p className='font-mont font-medium whitespace-break-spaces text-sm text-slate-500 lg:px-4 lg:text-base'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, commodi.</p>
+                <p className='font-mont font-medium whitespace-break-spaces text-sm text-slate-500 lg:px-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, commodi.</p>
                 <p className='font-mont font-semibold text-base text-amber-500 hover:text-amber-700 transition-all duration-500 lg:text-base'>+1200 6696 6889</p>
             </div>
             <div className='bg-white mb-4 w-[80%] text-center py-8 space-y-5 rounded-md shadow hover:shadow-xl transition-all duration-700 lg:w-[28%]'>
                 <p className='font-poppins font-semibold text-lg lg:text-xl lg:tracking-wider'>Marketing</p>
-                <p className='font-mont font-medium whitespace-break-spaces text-sm text-slate-500 lg:px-4 lg:text-base'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, commodi.</p>
+                <p className='font-mont font-medium whitespace-break-spaces text-sm text-slate-500 lg:px-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, commodi.</p>
                 <p className='font-mont font-semibold text-base text-amber-500 hover:text-amber-700 transition-all duration-500 lg:text-base'>+1700 9933 7433</p>
             </div>
             <div className='bg-white mb-4 w-[80%] text-center py-8 space-y-5 rounded-md shadow hover:shadow-xl transition-all duration-700 lg:w-[28%]'>
                 <p className='font-poppins font-semibold text-lg lg:text-xl lg:tracking-wider'>Complaints</p>
-                <p className='font-mont font-medium whitespace-break-spaces text-sm text-slate-500 lg:px-4 lg:text-base'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, commodi.</p>
+                <p className='font-mont font-medium whitespace-break-spaces text-sm text-slate-500 lg:px-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, commodi.</p>
                 <p className='font-mont font-semibold text-base text-amber-500 hover:text-amber-700 transition-all duration-500 lg:text-base'>+1237 9996 1234</p>
             </div>
             <div className='bg-white mb-4 w-[80%] text-center py-8 space-y-5 rounded-md shadow hover:shadow-xl transition-all duration-700 lg:w-[28%]'>
                 <p className='font-poppins font-semibold text-lg lg:text-xl lg:tracking-wider'>Returns</p>
-                <p className='font-mont font-medium whitespace-break-spaces text-sm text-slate-500 lg:px-4 lg:text-base'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, commodi.</p>
+                <p className='font-mont font-medium whitespace-break-spaces text-sm text-slate-500 lg:px-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam, commodi.</p>
                 <p className='font-mont font-semibold text-base text-amber-500 hover:text-amber-700 transition-all duration-500 lg:text-base'>mail@mail.com</p>
             </div>
         </div>

@@ -202,7 +202,9 @@ const Navbar = () => {
                     <li onClick={handleLogout} className='hover:bg-slate-200 cursor-pointer'>Logout</li>
                     </>
                 ): (
-                    <li className='hover:bg-slate-200 cursor-pointer'><Link to={`/login`}><i className='bx bxs-user text-xl'></i></Link></li>
+                    <li className='hover:bg-slate-200 cursor-pointer'>
+                        <Link to={`/login`}>Login</Link>
+                    </li>
                 )}
             </ul>
         </div>
