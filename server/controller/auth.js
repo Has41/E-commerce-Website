@@ -239,7 +239,6 @@ const forgotPassword = async (req, res, next) => {
 
 
 const logout = (req,res) => {
-    // res.clearCookie(`accessToken`)
     res.clearCookie('accessToken', {
         httpOnly: true,
         secure: true,

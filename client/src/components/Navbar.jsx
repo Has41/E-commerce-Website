@@ -64,7 +64,7 @@ const Navbar = () => {
         try{
             const res = await fetch(`${apiURL}/api/cart/current`, {
                 method: 'GET',
-                credentials: 'include'
+                credentials: "include"
             })
             if (res.ok) {
                 const data = await res.json()
@@ -91,7 +91,8 @@ const Navbar = () => {
     const removeCartItems = async (id) => {
         try {
             const res = await fetch(`${apiURL}/api/cart/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                credentials: "include"
             })
             if (res.ok) {
                 setCartItems(cartItems.filter((item) => item._id !== id))
@@ -164,8 +165,9 @@ const Navbar = () => {
         {/* Mobile navbar */}
         <div className='lg:hidden flex'>
             <div className='text-3xl mr-4 cursor-pointer'>
-                <Link to={`myCart`}>
+                <Link to={`myCart`} className='relative'>
                     <i className='bx bxs-cart-alt text-white text-2xl'></i>
+                    {cartItems && isLoggedIn && <span className="absolute top-[-1px] right-[-6px] text-white w-4 h-4 bg-red-600 rounded-full text-[9px] flex items-center justify-center font-semibold">{cartItems.length}</span>}
                 </Link>
             </div>
             <button onClick={() => setMobileMenu(!mobileMenu)} className='text-3xl mr-10 cursor-pointer'>
@@ -205,8 +207,7 @@ const Navbar = () => {
             </ul>
         </div>
 
-{/* Cart Menu */}
-
+        {/* Cart Menu */}
         <div className={`hidden lg:block h-screen lg:fixed lg:top-0 lg:right-0 lg:bottom-0 lg:w-96 lg:shadow-xl lg:bg-white lg:transition-transform lg:transform lg:duration-500 ${cartMenuAnimate()} lg:shadow-xl lg:z-50`}>
             {cartSidebar && (
                 <div onClick={toggleCartSidebar} className='lg:absolute lg:top-4 lg:right-3 cursor-pointer'>
@@ -216,40 +217,47 @@ const Navbar = () => {
             
             {/* Header Section */}
             <div className='hidden lg:block lg:mt-6 lg:ml-8'>
-                <p className="font-poppins font-semibold text-xl tracking-wider relative after:h-[2px] after:w-[430px] after:bg-amber-500 after:absolute after:bottom-[-20px] after:left-[-9%] after:content-''">Shopping Cart</p>
+                <p className="font-poppins font-semibold tracking-wider relative after:h-[2px] after:w-[430px] after:bg-amber-500 after:absolute after:bottom-[-20px] after:left-[-9%] after:content-''">Shopping Cart</p>
             </div>
             
             {/* Main Content Section */}
             <div className='h-[calc(100%-200px)] overflow-y-auto flex items-center justify-center'>
                 {isLoggedIn ? (
-                    <div className='h-full overflow-y-auto'>
+                    <div className='h-full overflow-y-none my-auto'>
                         {cartItems.length === 0 ? (
-                            <div>
+                            <div className='flex items-center justify-center h-full my-auto'>
                                 <p className='font-mont font-medium text-slate-500 text-lg'>No Products In The Cart!</p>
                             </div>
                         ) : (
-                            <ul className='max-w-xl mt-12'>
-                                {cartItems.slice(0, 5).map((item, idx) => (
+                            <ul className='max-w-xl mt-8'>
+                                {cartItems.slice(0, 4).map((item, idx) => (
                                     <div className='w-[330px]' key={idx}>
-                                        <li className='py-4 flex items-center justify-center gap-6'>
+                                        <li className='flex items-center justify-center gap-6 mt-3'>
                                             <div>
-                                                <img className='h-[90px] w-[75px]' src={item.image} alt="" />
+                                                <img className='h-[80px] w-[70px]' src={item.image} alt="" />
                                             </div>
                                             <div className='flex flex-col gap-1 pr-[65px] w-[170px]'>
-                                                <span className='font-mont font-semibold'>{item.title}</span>
-                                                <span>{item.quantity} x ${item.price}.00</span>
+                                                <span className='font-mont font-semibold text-sm'>{item.title}</span>
+                                                <span className='text-sm'>{item.quantity} x ${item.price}.00</span>
                                             </div>
                                             <div>
-                                                <i onClick={() => removeCartItems(item._id)} className='bx bxs-x-circle text-3xl text-amber-500 cursor-pointer hover:text-amber-600 duration-500'></i>
+                                                <i onClick={() => removeCartItems(item._id)} className='bx bxs-x-circle text-2xl text-amber-500 cursor-pointer hover:text-amber-600 duration-500'></i>
                                             </div>
                                         </li>
                                     </div>
                                 ))}
                             </ul>
                         )}
+                        {cartItems.length > 4 && (
+                            <div className='mt-6'>
+                                <p className='font-mont font-medium text-slate-500 text-sm'>
+                                    Click <Link to={`/myCart`} className='text-amber-500 text-sm'>View Cart</Link> to see all items.
+                                </p>
+                            </div>
+                        )}
                     </div>
                 ) : (
-                    <div>
+                    <div className='flex items-center justify-center h-full my-auto'>
                         <p className='font-mont font-medium text-slate-500 text-lg'>No Products In The Cart!</p>
                     </div>
                 )}
@@ -259,7 +267,7 @@ const Navbar = () => {
             <div>
                 {isLoggedIn && cartItems.length !== 0 ? (
                     <div className='fixed bottom-0 right-0 left-0 p-4 bg-white shadow-inner'>
-                        <div className='flex items-center justify-between border-t border-b border-slate-400 py-3'>
+                        <div className='space-x-52 pb-4'>
                             <span className='uppercase font-semibold'>Subtotal:</span>
                             <span className='font-mont text-black font-semibold text-lg'>${total}.00</span>
                         </div>

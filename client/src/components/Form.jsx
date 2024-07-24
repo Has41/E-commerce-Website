@@ -5,11 +5,17 @@ const Form = () => {
     const [email, setEmail] = useState('')
     const [comment, setComment] = useState('')
     const [loading, setLoading] = useState(false)
+    const [errorMessage, setErrorMessage] = useState(null)
 
     const apiURL = process.env.REACT_APP_API_URL
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if (!name && !email && !comment) {
+            setErrorMessage('Fill All Required Fields!')
+            return
+        }
 
         const formData = {
             name: name,
@@ -112,10 +118,12 @@ const Form = () => {
             <p className='font-poppins font-medium text-xl tracking-wide lg:text-3xl lg:font-semibold'>Don't Be A Stranger!</p>
             <p className='font-poppins font-normal text-sm tracking-wider mt-2 text-slate-500 lg:text-lg'>Drop In A Line Or Two!</p>
 
-            <form onSubmit={handleSubmit} className='space-y-8 mt-8 max-w-[70%] mx-auto' action="#">
+            {errorMessage && <div className='text-red-800 font-medium mt-4 bg-red-100 py-3 lg:text-base text-sm w-[70%] mx-auto rounded-sm'>{errorMessage}</div>}
+
+            <form onSubmit={handleSubmit} className='space-y-8 mt-4 w-[70%] mx-auto' action="#">
                 <div className='relative'>
                     <i className='bx bxs-user-pin text-xl text-amber-500 lg:text-3xl absolute top-3 left-3 hidden lg:block'></i>
-                    <input className='border focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none border-slate-400 rounded-sm py-4 lg:pl-12 sm:pl-6 w-full text-sm lg:text-base lg:py-4 lg:w-full' value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder='Type Full Name Here!' />
+                    <input className='border focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none border-slate-400 rounded-sm py-4 lg:pl-12 sm:pl-6 w-full text-sm lg:text-base' value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder='Type Full Name Here!' />
                 </div>
 
                 <div className='relative'>
@@ -128,7 +136,7 @@ const Form = () => {
                     <input className='border focus:outline-none focus:ring-0 focus:border-black/80 focus:shadow-none border-slate-400 rounded-sm py-4 pb-24 lg:pl-12 sm:pl-6 w-full text-sm lg:text-base lg:pt-4 lg:pb-40 lg:w-full' value={comment} onChange={(e) => setComment(e.target.value)} type="text" placeholder='Type Comment Here!' />
                 </div>
 
-                <button type='submit' className='w-full sm:w-full lg:w-full py-3 text-lg lg:text-xl lg:tracking-wider lg:font-medium font-medium bg-amber-500 hover:bg-amber-600 transition-all duration-500 text-white rounded-sm font-poppins'>
+                <button type='submit' className='w-full py-3 lg:text-lg lg:tracking-wider lg:font-medium font-medium bg-amber-500 hover:bg-amber-600 transition-all duration-500 text-white rounded-sm font-poppins'>
                 {loading ? 
                 <>
                     <svg aria-hidden="true" className="inline w-5 h-5 text-gray-200 animate-spin dark:text-white fill-amber-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

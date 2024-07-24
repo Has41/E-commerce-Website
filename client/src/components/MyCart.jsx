@@ -30,7 +30,10 @@ const MyCart = () => {
 
   const getCartItems = async () => {
     try {
-        const res = await fetch(`${apiURL}/api/cart/current`)
+        const res = await fetch(`${apiURL}/api/cart/current`, {
+          method: "GET",
+          credentials: "include"
+        })
         if (res.ok) {
             const data = await res.json()
             setCartItems(data)
@@ -125,7 +128,6 @@ useEffect(() => {
 }, [])
 
 
-
 useEffect(() => {
   getCartItems()
 },[])
@@ -147,16 +149,16 @@ useEffect(() => {
                 {cartItems.length === 0 ? (
                   <p className='mt-12 font-mont font-medium text-slate-500 ml-4'>Your Cart is empty!</p>
                 ) : (
-                  <ul>
+                  <ul className='mt-14'>
                     {cartItems.map((elements)=> {
-                      return <div key={elements._id} className='mt-12 cursor-pointer hover:bg-slate-50 transition-all duration-500 w-[95%] py-5 px-6'>
+                      return <div key={elements._id} className='cursor-pointer mt-6 hover:bg-slate-50 transition-all duration-500 w-[95%]'>
                       <li className='flex'>
                       <div className='mr-6'>
-                          <img className='h-[90px] w-[75px]' src={elements.image} alt="" />
+                          <img className='h-[90px] w-[75px]' src={elements.image} alt="Photo" />
                       </div>
-                      <div className='flex flex-col gap-1 pr-[65px] w-[170px]'>
-                        <span className='font-mont font-semibold'>{elements.title}</span>
-                        <span>{elements.quantity} x ${elements.price}.00</span>
+                      <div className='flex flex-col gap-y-2 w-[170px]'>
+                        <span className='font-mont font-semibold text-sm'>{elements.title}</span>
+                        <span className='text-sm'>{elements.quantity} x ${elements.price}.00</span>
                       </div>
                       <div>
                           <i onClick={() => removeCartItems(elements._id)} className='bx bxs-x-circle text-3xl text-black/80 cursor-pointer hover:text-black/80 duration-500'></i>
@@ -177,18 +179,18 @@ useEffect(() => {
             <div className='mt-20'>
                 <table className="w-[60%] mx-auto text-sm text-left shadow-lg">
                     <thead className="text-base text-white uppercase bg-black/80">
-                        <tr className='lg:text-lg text-base h-[50px]'>
+                        <tr className='lg:text-lg text-sm h-[50px]'>
                             <th className='pl-5'>Total Amount</th>
                         </tr>
                       </thead>
                       <tbody className='uppercase'>
                             <tr className="bg-white border hover:bg-gray-50 text-base">
-                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-base lg:text-lg">
+                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-sm lg:text-lg">
                                     <span className='font-bold text-black/80'>Total:</span>
                                     <span className='pl-4 font-semibold font-mont text-black/80'>{totalPrice()}</span>  
                                 </td>
                             </tr>
-                            <tr className='bg-white border hover:bg-gray-50 text-base text-center'>
+                            <tr className='bg-white border hover:bg-gray-50 text-sm text-center'>
                                 <td scope="row" className="px-6 py-4 font-medium text-black/80 whitespace-nowrap">
                                   <button onClick={createPayment} className='px-10 py-3 border-2 border-black/80 rounded-sm hover:bg-black/80 hover:text-white transition-all duration-300 font-poppins uppercase'>
                                   {loading ? 
@@ -210,10 +212,10 @@ useEffect(() => {
         {/* Desktop Mode */}
         <div data-aos="fade-up" data-aos-duration="1000" className='hidden lg:block'>
         {cartItems && cartItems.length > 0 ? (
-                <div className='bg-white w-[90%] mx-auto pt-14 shadow-sm'>
+                <div className='bg-white w-[85%] mx-auto pt-14 shadow-sm'>
                 <div className='pb-10'>
                 <table className="w-[80%] mx-auto text-sm text-left text-gray-500 shadow-lg">
-                <thead className="text-base text-white uppercase bg-black/80">
+                <thead className="text-white uppercase bg-black/80">
                 <tr>
                     <th scope="col" className="px-6 py-3 text-center">
                         Order #
@@ -238,7 +240,7 @@ useEffect(() => {
                   <tbody className='uppercase'>
                 {
                     cartItems?.map((items, index) => {
-                        return <tr key={index} className="bg-white border hover:bg-gray-50 text-base text-center text-black/80">
+                        return <tr key={index} className="bg-white border hover:bg-gray-50 text-sm text-center text-black/80">
                         <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                             # {index+1}
                         </td>
@@ -256,7 +258,7 @@ useEffect(() => {
                         </td>
                         <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-center">
                               <button onClick={() => removeCartItems(items._id)} className='font-medium hover:text-red-600 duration-500 transition-all'>
-                                  <i className='bx bxs-trash text-[22px]'></i>
+                                  <i className='bx bxs-trash text-lg'></i>
                               </button>
                         </td>
                         </tr>
@@ -267,29 +269,29 @@ useEffect(() => {
             </div>
             <div className='py-10'>
                 <div className='mt-5'>
-                <table className="w-[30%] mx-auto text-sm text-left shadow-lg">
-                    <thead className="text-base text-white uppercase bg-black/80 text-pretty">
-                        <tr className='text-lg h-[50px]'>
+                <table className="w-[30%] mx-auto text-left shadow-lg">
+                    <thead className="text-white uppercase bg-black/80 text-pretty">
+                        <tr className='h-[50px]'>
                             <th className='pl-5'>Total Amount</th>
                         </tr>
                     </thead>
                     <tbody className='uppercase text-black/80'>
                             <tr className="bg-white border hover:bg-gray-50 text-base">
-                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-[18px]">
+                                <td className="px-6 py-4 font-medium whitespace-nowrap">
                                     <span className='font-bold'>Subtotal:</span>
                                     <span className='pl-4 font-semibold font-mont'>{totalPrice()}</span>  
                                 </td>
                             </tr>
                             <tr className='bg-white border hover:bg-gray-50 text-base'>
-                                <td scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-[18px]">
+                                <td className="px-6 py-4 font-medium whitespace-nowrap">
                                     <span className='font-bold'>Total:</span>
                                     <span className='pl-4 font-semibold font-mont'>{totalPrice()}</span>  
                                 </td>
                             </tr>
                             <tr className='bg-white border hover:bg-gray-50 text-base text-center'>
-                                <td scope="row" className="px-6 py-4 font-medium text-black/80 whitespace-nowrap text-lg">
+                                <td className="px-6 py-3 font-medium text-black/80 whitespace-nowrap">
                                   <button onClick={createPayment} className='px-10 py-3 border-2 border-black/80 rounded-sm hover:bg-black/80 hover:text-white transition-all duration-300 font-poppins uppercase'>
-                                  {!loading ? 
+                                  {loading ? 
                                     <>
                                       <svg aria-hidden="true" className="inline w-5 h-5 text-gray-200 animate-spin dark:text-white fill-black/80" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
