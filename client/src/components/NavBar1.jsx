@@ -169,7 +169,19 @@ const NavBar1 = () => {
           </Link>
         </div>
         <button onClick={() => setMobileMenu(!mobileMenu)} className='text-3xl mr-10 cursor-pointer'>
-            {mobileMenu ? <i className='bx bx-x'></i> : <i className='bx bx-menu-alt-right text-3xl'></i>}
+                {mobileMenu ? (
+                    <i className='bx bx-x'></i>
+                ) : (
+                    isLoggedIn && userData ? (
+                        <img
+                            className='rounded-full w-[30px] h-[30px] border-2 border-black/80'
+                            src={`${profilePic}/${userData._id}`}
+                            alt="Photo"
+                        />
+                    ) : (
+                        <i className='bx bx-menu-alt-right text-3xl'></i>
+                    )
+                )}
         </button>
     </div>
 
