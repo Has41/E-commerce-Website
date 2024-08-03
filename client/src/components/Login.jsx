@@ -11,7 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState(``)
   const [errorMessage, setErrorMessage] = useState(null)
   const [loading, setLoading] = useState(false)
-  const { isLoggedIn, setIsLoggedIn, setRole } = useAuth()
+  const { setIsLoggedIn, setRole } = useAuth()
 
   const apiURL = process.env.REACT_APP_API_URL
 
@@ -51,11 +51,14 @@ const Login = () => {
             if (userRes.ok) {
                 setLoading(false)
                 const userData = await userRes.json()
+                if (!userData.verification) {
+                    setErrorMessage('Please verify your email to log in.')
+                    setLoading(false)
+                    return
+                }
                 setIsLoggedIn(true)
                 setRole(userData.role)
-                // console.log(userData)
                 const isAdmin = userData.role === 'admin'
-                // console.log(isAdmin)
                 isAdmin ? navigate('/adminPanel') : navigate('/')
              } else {
                 setLoading(false)
