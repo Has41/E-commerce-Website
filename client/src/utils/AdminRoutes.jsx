@@ -3,9 +3,9 @@ import { Navigate } from 'react-router-dom'
 import { useAuth } from '../hooks/AuthContext'
 
 const AdminRoutes = ({ children }) => {
-  const { isLoggedIn, role } = useAuth()
+  const { isLoggedIn, role, isVerified } = useAuth()
 
-  if (isLoggedIn && role === 'admin') {
+  if (isLoggedIn && isVerified && role === 'admin') {
     return <>{children}</>
   }
 

@@ -8,6 +8,7 @@ export const useAuth = () => useContext(AuthContext)
 export const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isVerified, setIsVerified] = useState(false)
   const [loading, setLoading] = useState(true)
   const apiURL = process.env.REACT_APP_API_URL
 
@@ -23,6 +24,7 @@ export const AuthProvider = ({ children }) => {
           const data = await res.json()
           setIsLoggedIn(true)
           setRole(data.role)
+          setIsVerified(data.verification)
         } else {
           setIsLoggedIn(false)
           setRole(null)
@@ -45,7 +47,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ role, setRole, isLoggedIn, setIsLoggedIn, loading, logout }}>
+    <AuthContext.Provider value={{ role, setRole, isLoggedIn, setIsLoggedIn, loading, logout, isVerified }}>
       {children}
     </AuthContext.Provider>
   )
