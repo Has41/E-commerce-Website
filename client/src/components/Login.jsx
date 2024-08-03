@@ -52,7 +52,7 @@ const Login = () => {
                 setLoading(false)
                 const userData = await userRes.json()
                 if (!userData.verification) {
-                    setErrorMessage('Please verify your email to log in.')
+                    setErrorMessage('Please verify your account to log in.')
                     setLoading(false)
                     return
                 }

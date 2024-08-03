@@ -68,7 +68,7 @@ const Register = () => {
         <div className='text-center bg-white py-8 lg:py-16 mx-auto sm:mx-auto lg:mx-auto lg:w-[40%] sm:space-y-8 rounded-sm shadow-sm lg:shadow-md'>
             <p className='uppercase font-mont lg:font-poppins lg:tracking-wider font-semibold text-black/80 text-xl lg:text-3xl lg:mb-8 lg:-mt-4'>Register</p>
             {errorMessage && <div className='text-red-800 font-medium bg-red-100 py-3 lg:mt-[-20px] mt-2 lg:text-base text-sm lg:max-w-full max-w-[80%] lg:w-[75%] rounded-sm mx-auto'>{errorMessage}</div>}
-            {message && <div className='text-green-700 font-medium bg-green-200 lg:w-[85%] lg:py-3 lg:mt-[-20px] lg:text-base text-sm lg:max-w-full max-w-[80%] rounded-sm mx-auto'>{message}</div>}
+            {message && <div className='text-green-700 font-medium bg-green-200 lg:w-[85%] py-3 mt-2 lg:mt-[-20px] lg:text-base text-sm lg:max-w-full max-w-[80%] rounded-sm mx-auto'>{message}</div>}
             <form method='post' onSubmit={register}>
               <div className='sm:w-[400px] w-[310px] lg:w-[85%] mx-auto sm:mx-auto lg:mx-auto'>
               <div className='space-y-5 mt-4 lg:ml-0 sm:flex sm:flex-col sm:items-center sm:w-full lg:flex lg:flex-col lg:items-center lg:justify-center sm:overflow-hidden'>
