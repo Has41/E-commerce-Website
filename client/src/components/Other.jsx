@@ -6,7 +6,7 @@ const Other = () => {
     <main className='bg-slate-50 h-[85vh] lg:h-[63vh] max-w-full'>
     <div data-aos="fade-up" data-aos-duration="1000" className='bg-white w-[97%] my-20 shadow-lg lg:flex lg:items-center lg:justify-center mx-auto'>
         <div className='text-center lg:w-[50%]'>
-            <p className="text-lg sm:text-2xl lg:text-3xl lg:relative lg:right-44 lg:bottom-5 font-semibold font-poppins mb-6 tracking-wider relative after:h-[3px] after:rounded-lg after:w-[65px] after:bg-amber-500 after:absolute after:bottom-[-5px] after:left-[41%] after:sm:left-[43%] after:content-''">Our Story</p>
+            <p className="text-lg sm:text-2xl lg:text-3xl lg:relative lg:right-44 lg:bottom-5 font-semibold font-poppins mb-6 tracking-wider relative after:h-[3px] after:rounded-lg after:w-[65px] after:bg-amber-500 after:absolute after:bottom-[-5px] after:left-[41%] after:lg:left-[45%] after:sm:left-[43%] after:content-''">Our Story</p>
             <p className='whitespace-break-spaces px-4 leading-normal font-mont text-sm text-slate-700 lg:break-after-all lg:text-[17px] lg:text-justify sm:text-justify sm:px-8 sm:text-base lg:ml-5'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi officiis eos, repellat error nobis quisquam excepturi nostrum dolorem non esse maiores sit sed, nulla officia? Exercitationem sed expedita non est!</p>
         </div>
 

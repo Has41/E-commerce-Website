@@ -7,7 +7,7 @@ const mailSender = async (email, subject, text) => {
         host: process.env.SMP_HOST,
         service: process.env.SERVICE,
         port: process.env.SMP_PORT, 
-        secure: process.env.SECURE,
+        secure: process.env.SECURE === 'true',
         auth: {
           user: process.env.EMAIL,
           pass: process.env.PASSWORD
