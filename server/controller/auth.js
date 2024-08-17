@@ -6,7 +6,7 @@ import fs from 'fs'
 import jwt  from 'jsonwebtoken'
 import crypto from 'crypto'
 import errorHandler from '../utils/errorHandler.js'
-import sendMail from '../utils/sendEmail.js'
+import mailSender from '../utils/sendEmail.js'
 
 
 const register = async (req,res,next) => {
@@ -49,7 +49,7 @@ const register = async (req,res,next) => {
 
         const text = `Hi ${savedUser.name},
 
-        Welcome to [Your App Name]! We're excited to have you on board.
+        Welcome to HASS. ! We're excited to have you on board.
         
         Please verify your account by clicking the link below to complete your registration:
         
@@ -62,19 +62,19 @@ const register = async (req,res,next) => {
         Thanks for joining us!
         
         Best regards,
-        The [Your App Name] Team
+        The HASS. Team
         Support: support@yourapp.com
         `
-        
+    
         const html = `
           <p>Hi ${savedUser.name},</p>
         
-          <p>Welcome to <strong>[Your App Name]</strong>! We're excited to have you on board.</p>
+          <p>Welcome to <strong>HASS.</strong>! We're excited to have you on board.</p>
         
           <p>Please verify your account by clicking the link below to complete your registration:</p>
         
           <p style="text-align: center;">
-            <a href="${url}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Verify Your Account</a>
+            <a href="${url}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; margin: 10px 0px; border-radius: 5px;">Verify Your Account</a>
           </p>
         
           <p>If you did not request this, please ignore this email. This link will expire in 24 hours for your security.</p>
@@ -84,8 +84,7 @@ const register = async (req,res,next) => {
           <p>Thanks for joining us!</p>
         
           <p>Best regards,<br>
-          The [Your App Name] Team<br>
-          <a href="mailto:support@yourapp.com">support@yourapp.com</a></p>
+          The HASS. Team<br>
         `
         
 
@@ -188,8 +187,8 @@ const login = async (req, res, next) => {
             const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1d' })
             return res.status(200).cookie('accessToken', token, {
                 httpOnly: true,
-                sameSite: 'none',
-                secure: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
                 expiresIn: '1d'
             }).json('Login Success!')
             
@@ -284,8 +283,8 @@ const forgotPassword = async (req, res, next) => {
 const logout = (req,res) => {
     res.clearCookie('accessToken', {
         httpOnly: true,
-        secure: true,
-        sameSite: 'None'
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
     })
     return res.status(200).json({ message: `Logout Success` })
 }

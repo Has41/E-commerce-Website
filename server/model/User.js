@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-        required: true
+        // required: true
     },
     password: {
         type: String,
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
-        required: true
+        // required: true
     },
     role: {
         type: String,

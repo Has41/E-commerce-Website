@@ -43,6 +43,11 @@ const Register = () => {
             if(res.ok) {
               setLoading(false)
               setMessage("An Email has been sent to your account!")
+
+              setTimeout(() => {
+                window.close()
+              }, 60000)
+
             } else {
               setLoading(false)
               const errData = await res.json()

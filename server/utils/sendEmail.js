@@ -24,13 +24,13 @@ const mailSender = async (email, subject, text, html) => {
       }
     })
     
-      await transporter.sendMail({
-        from: process.env.EMAIL,
-        to: email,
-        subject: subject,
-        text: text,
-        html: html
-      })
+    await transporter.sendMail({
+      from: process.env.EMAIL,
+      to: email,
+      subject: subject,
+      text: text,
+      html: html
+    })
 
   } catch (mailError) {
     if (mailError.code === 'EAUTH') {
@@ -50,4 +50,4 @@ const mailSender = async (email, subject, text, html) => {
 
 }
 
-export default mailSender;
+export default mailSender
