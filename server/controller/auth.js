@@ -45,8 +45,51 @@ const register = async (req,res,next) => {
             token: crypto.randomBytes(32).toString("hex")
         }).save()
 
-        const url = `${process.env.BASE_URL}users/${savedUser._id}/verify/${token.token}`
-        await sendMail(savedUser.email, "Verify Your Email", url)
+        const url = `${process.env.BASE_URL}/users/${savedUser._id}/verify/${token.token}`
+
+        const text = `Hi ${savedUser.name},
+
+        Welcome to [Your App Name]! We're excited to have you on board.
+        
+        Please verify your account by clicking the link below to complete your registration:
+        
+        ${url}
+        
+        If you did not request this, please ignore this email. This link will expire in 24 hours for your security.
+        
+        If you have any questions, feel free to contact our support team.
+        
+        Thanks for joining us!
+        
+        Best regards,
+        The [Your App Name] Team
+        Support: support@yourapp.com
+        `
+        
+        const html = `
+          <p>Hi ${savedUser.name},</p>
+        
+          <p>Welcome to <strong>[Your App Name]</strong>! We're excited to have you on board.</p>
+        
+          <p>Please verify your account by clicking the link below to complete your registration:</p>
+        
+          <p style="text-align: center;">
+            <a href="${url}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Verify Your Account</a>
+          </p>
+        
+          <p>If you did not request this, please ignore this email. This link will expire in 24 hours for your security.</p>
+        
+          <p>If you have any questions, feel free to contact our support team.</p>
+        
+          <p>Thanks for joining us!</p>
+        
+          <p>Best regards,<br>
+          The [Your App Name] Team<br>
+          <a href="mailto:support@yourapp.com">support@yourapp.com</a></p>
+        `
+        
+
+        await mailSender(savedUser.email, "Verify Your Email", text, html)
 
         return res.status(201).json(savedUser)
     } catch(err) {
@@ -123,7 +166,7 @@ const login = async (req, res, next) => {
                     token: crypto.randomBytes(32).toString("hex")
                 }).save()
         
-                const url = `${process.env.BASE_URL}users/${user._id}/verify/${token.token}`
+                const url = `${process.env.BASE_URL}/users/${user._id}/verify/${token.token}`
                 try {
                     await sendMail(user.email, "Verify Your Email", url)
                     return res.status(400).json({ message: "An Email Has been sent to your account!" })
@@ -187,7 +230,7 @@ const forgotPassword = async (req, res, next) => {
         await token.save()
       }
   
-      const url = `${process.env.BASE_URL}users/${user._id}/reset-password/${token.token}`
+      const url = `${process.env.BASE_URL}/users/${user._id}/reset-password/${token.token}`
       await sendMail(user.email, "Reset Your Password", url)
   
       res.status(200).send("Verification email sent Successfully!")

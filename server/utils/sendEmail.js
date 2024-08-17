@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 import errorHandler from '../utils/errorHandler.js'
 
-const mailSender = async (email, subject, text) => {
+const mailSender = async (email, subject, text, html) => {
   try{
     const transporter = nodemailer.createTransport({
         host: process.env.SMP_HOST,
@@ -28,7 +28,8 @@ const mailSender = async (email, subject, text) => {
         from: process.env.EMAIL,
         to: email,
         subject: subject,
-        text: text
+        text: text,
+        html: html
       })
 
   } catch (mailError) {
